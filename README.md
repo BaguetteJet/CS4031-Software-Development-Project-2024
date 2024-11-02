@@ -24,7 +24,6 @@
 - A command line interface (CLI) to allow a graphical user interface (GUI) to be substituted easily
 
 ## Must Submit:
-### ONE PERSON SUBMITS
 
 1. A document outlining the Class Responsibility Collaboration (CRC) cards. (Word Document)
 2. A UML class diagram showing the relationships between the classes. This should include the class names (no details of attributes/constructors/methods required). It must show the relationships between the classes (class inheritance, interface inheritance, aggregation, dependency as appropriate) and utilising the notation presented in lecture slides (please refer to the slides). This UML diagram must be generated manually and drawn using a tool like draw.io. (PNG file of Diagram)
