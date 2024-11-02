@@ -2,7 +2,7 @@
 
 ## Key Ideas
 
-- build a Payroll system for UL Staff in JAVA ![salary info](https://www.ul.ie/hr/current-staff/pay-benefits/salary-information)
+- build a Payroll system for UL Staff in JAVA [salary info](https://www.ul.ie/hr/current-staff/pay-benefits/salary-information)
 - similar salary scales for hourly paid employees
   
 - part-time employees submit pay claim form by 2nd Friday of month
@@ -37,7 +37,7 @@
 
 ## Rules:
 
-1. Strictly groups with max size 4 ![groups](https://ulcampus-my.sharepoint.com/:x:/g/personal/michael_english_ul_ie/ES72TCVV7FZKnjaEl0boYqcBprC5rJiORFkOz4JYiHMeoA?e=5789Qa)
+1. Strictly groups with max size 4 [groups](https://ulcampus-my.sharepoint.com/:x:/g/personal/michael_english_ul_ie/ES72TCVV7FZKnjaEl0boYqcBprC5rJiORFkOz4JYiHMeoA?e=5789Qa)
 2. Interview where each team member will be requested to give a code/project walkthrough
     - (start of week 13 to the end of the examination period)
     - Failure to satisfactorily demonstrate your project will result in an F 
