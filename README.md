@@ -34,6 +34,9 @@
    
 - The use of a Github repository for source code version management.
 
+IF YOU DON'T KNOW YET:
+"A pay slip refers to the document an employee receives in each pay period that outlines their earnings, deductions, and net pay. On the other hand, payroll refers to the entire process of calculating and distributing employee compensation, including salaries, wages, bonuses, and benefits."
+
 ## Rules:
 
 1. Strictly groups with max size 4 [groups](https://ulcampus-my.sharepoint.com/:x:/g/personal/michael_english_ul_ie/ES72TCVV7FZKnjaEl0boYqcBprC5rJiORFkOz4JYiHMeoA?e=5789Qa)
