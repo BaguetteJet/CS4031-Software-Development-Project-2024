@@ -1,6 +1,9 @@
 TO DO LIST:
 - everything...
 
+DONE:
+- nothing...
+
 MENU
 > UPDATE & GENERATE INFORMATION in Pay Slips CSV
   - calculate deductions
