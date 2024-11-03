@@ -1,0 +1,50 @@
+TO DO LIST:
+- everything...
+
+MENU
+> UPDATE & GENERATE INFORMATION in Pay Slips CSV
+  - calculate deductions
+  - generate 25th day of each month
+  - part-time form by 2nd friday of month
+
+> LOGIN SYSTEM
+  1. ask for username
+  2. ask for password
+  3. redirect of login successfull
+
+A) Employee:
+  1. view personal info
+  2. view payslips
+  [PART-TIME] submit pay claim form
+  [SOMETIMES] accept promotion
+
+B) Admin:
+  1. add new employee
+      - username, password, type in Users CSV
+      - info in Employees CSV
+      - choose Role from Pay Scale CSV
+
+C) Human Resources:
+  1. promote Employess
+
+---------------------------------
+CSV files layout: ???
+
+1. Users
+User ID | Username | Password |  Type
+ (int)  | (String) | (String) | (char)
+. . .
+
+2. Employees
+User ID |   Name   | Address  | phone |  email   | Start Date | scale | Role ID |   Role   | info..... ADD MORE
+ (int)  | (String) | (String) | (int) | (String) | (DateTime) | (int) |  (int)  | (String) |  . . .
+. . .
+
+3. Pay Scale
+Role ID | Scale | Annual Rate
+ (int)  | (int) | (double)
+
+4. Pay Slips
+User ID | Formatted Pay Slip
+ (int)  | (String) ???
+. . .
