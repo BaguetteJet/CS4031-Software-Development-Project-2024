@@ -4,6 +4,4 @@ public class PayScaleCSV extends CSV {
         super(pathOfCSV);
         readCSV();
     }
-
-    
 }
