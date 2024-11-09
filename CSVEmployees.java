@@ -25,13 +25,11 @@ public class CSVEmployees extends CSV {
      * @param PPS PPS number
      */
     public void addEmployee(String UserID, String RoleID, String ScalePoint, String Type, String StartDate, String FullName, String PPSN) {
-        System.out.print("ADDING EMPLOYEE");
         String[] addRow = {UserID, RoleID, ScalePoint, Type, StartDate, FullName, PPSN};
         for (String x : addRow) {
             if (x.equals(""))
                 x = "null";
         }
-        System.out.print(addRow.toString());
         addRow(addRow);
     }
 

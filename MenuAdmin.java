@@ -194,7 +194,6 @@ public class MenuAdmin extends Menu {
 
         // return new user ID if successful
         String newUserID = usersCSV.createEmployee(username, password);
-        System.out.print("NEW USER CREATED");
         employeesCSV.addEmployee(newUserID, roleID, scalePoint, typeOfEmployment, startDate, fullName, PPSN);
         return newUserID;
     }
