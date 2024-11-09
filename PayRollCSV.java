@@ -5,17 +5,15 @@ public class PayRollCSV extends CSV {
     private PayScaleCSV payScale;
     private UsersCSV users;
     private ArrayList<String[]> usersCSV = users.getData(),
-            payScaleCSV = payScale.getData();
-    private int index;
+                                payScaleCSV = payScale.getData();
+    private int payIndex, index;
 
     public PayRollCSV(String pathOfCSV) {
         super(pathOfCSV);
         readCSV();
     }
 
-    
     /** 
-     * Method to add a user to the PayRoll
      * @param userID
      * @param roleID
      * @param scale
@@ -28,13 +26,34 @@ public class PayRollCSV extends CSV {
         if(alreadyOnRoll(userID))
             return;
         
-        String[] row = payScaleCSV.get(index),
+        String[] row = payScaleCSV.get(payIndex),
                  addRow = {userID, roleID, Integer.toString(scale), row[scale]};
  
         addRow(addRow);
     }
 
-    public boolean userExists(String userID){
+    /** 
+     * @param userID
+     */
+    public void updatePayRoll(String userID){
+        if(!alreadyOnRoll(userID)){
+            System.out.println("User not on PayRoll");
+            return;
+        }
+        String[] row = getData().get(index);
+        String getRollID = row[1], getScale = row[2];
+        int scale = Integer.parseInt(getScale), updatedScale = scale++;
+
+        if(!roleAndScaleExists(getRollID, updatedScale)){
+            System.out.println("User is already at maximum Scale Point");
+            return;
+        }
+        String[] payRow = payScaleCSV.get(payIndex),
+                 updatedRow = {userID, getRollID, Integer.toString(updatedScale), payRow[updatedScale]};
+        getData().set(index, updatedRow);  
+    }
+
+    private boolean userExists(String userID){
         for(int i = 1; i < usersCSV.size(); i++){
             String[] row = usersCSV.get(i);
             if(row[0].equals(userID))
@@ -44,11 +63,11 @@ public class PayRollCSV extends CSV {
         return false;
     }
 
-    public boolean roleAndScaleExists(String roleID, int scale){
+    private boolean roleAndScaleExists(String roleID, int scale){
         for(int i = 0; i < payScaleCSV.size(); i++){
             String[] row = payScaleCSV.get(i);
             if(row[0].equals(roleID)){
-                index = i;
+                payIndex = i;
                 if(scale < row.length && !row[scale].equals("null")){
                     return true;         
                 } else {
@@ -61,10 +80,11 @@ public class PayRollCSV extends CSV {
         return false;
     }
 
-    public boolean alreadyOnRoll(String userID){
+    private boolean alreadyOnRoll(String userID){
         for(int i = 1; i < getData().size(); i++){
             String[] row = getData().get(i);
             if(row[0].equals(userID)){
+                index = i;
                 System.out.println("User already on Pay Roll");
                 return true;
             }
