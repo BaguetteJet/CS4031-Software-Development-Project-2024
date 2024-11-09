@@ -2,18 +2,18 @@ TO DO LIST:
 - everything...
 
 DONE:
-- nothing...
+- somethign !
 
 MENU
 > UPDATE & GENERATE INFORMATION in Pay Slips CSV
-  - calculate deductions
+  - calculate deductions | DONE
   - generate 25th day of each month
   - part-time form by 2nd friday of month
 
-> LOGIN SYSTEM
-  1. ask for username
-  2. ask for password
-  3. redirect of login successfull
+> LOGIN SYSTEM | DONE
+  1. ask for username | DONE
+  2. ask for password | DONE
+  3. redirect of login successfull | DONE
 
 A) Employee:
   1. view personal info
@@ -22,8 +22,8 @@ A) Employee:
   [SOMETIMES] accept promotion
 
 B) Admin:
-  1. add new employee
-      - username, password, type in Users CSV
+  1. add new employee | DONE mostly
+      - username, password, type in Users CSV | DONE
       - info in Employees CSV
       - choose Role from Pay Scale CSV
 
@@ -31,11 +31,11 @@ C) Human Resources:
   1. promote Employess
 
 ---------------------------------
-CSV files layout: ???
+CSV files layout: working progress
 
-1. Users
-User ID | Username | Password |  Type
- (int)  | (String) | (String) | (char)
+1. Users | DONE
+  User ID  | Username | Password
+  (String) | (String) | (String)
 . . .
 
 2. Employees

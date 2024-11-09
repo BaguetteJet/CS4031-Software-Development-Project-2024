@@ -17,7 +17,9 @@ public abstract class Menu {
     protected String pageSpace;
     protected String charRegex;
     // CSV files
-    protected UsersCSV usersCSV;
+    protected CSVUsers usersCSV;
+    protected CSVEmployees employeesCSV;
+    protected CSVPayScale payScaleCSV;
 
     /**
      * Constructor.
@@ -26,7 +28,7 @@ public abstract class Menu {
         more = true;
         UserID = null;
         defaultMessage = "   Welcome to UL Payroll System";
-        pageBreak = "--------------------------------------";
+        pageBreak = "--------------------------------------------";
         pageSpace = "\n\n";
         charRegex = "[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$&+:;=?@#|'<>.^*()%!-]+";
 
@@ -41,6 +43,8 @@ public abstract class Menu {
     public abstract void run();
 
     private void loadData() {
-        usersCSV = new UsersCSV("Users.CSV");
+        usersCSV = new CSVUsers("data\\Users.csv");
+        payScaleCSV = new CSVPayScale("data\\PayScale.csv");
+        employeesCSV = new CSVEmployees("data\\Employees.csv");
     }
 }
