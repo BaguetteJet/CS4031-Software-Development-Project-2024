@@ -22,8 +22,9 @@ public class CSVUsers extends CSV {
      * @return String of User ID if valid, else return null
      */
     public String checkLogin(String username, String password) {
-        for (int i = 1; i < getData().size(); i++) {
-           String[] row = getData().get(i);
+        readCSV();
+        for (int i = 1; i < dataArray.size(); i++) {
+           String[] row = dataArray.get(i);
            if (row[1].equals(username) && row[2].equals(password)) {
                 return row[0];
            }
@@ -37,8 +38,9 @@ public class CSVUsers extends CSV {
      * @return Boolean return false if username already in use, else true.
      */
     public boolean checkUsernameAvailable(String username) {
-        for (int i = 1; i < getData().size(); i++) {
-            String[] user = getData().get(i);
+        readCSV();
+        for (int i = 1; i < dataArray.size(); i++) {
+            String[] user = dataArray.get(i);
             if (username.equals(user[1])) {
                 return false;
             }

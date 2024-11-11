@@ -83,7 +83,7 @@ public abstract class CSV {
             bufferedWriter.write("\n");
             bufferedWriter.close();
             
-            dataArray.add(newRow);
+            readCSV();
         } 
         catch (Exception e) {
             System.out.println(e);
