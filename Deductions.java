@@ -5,10 +5,12 @@ public class Deductions {
     private final String roleID;
     private final double salary;
     private final int scale;
+    private String[] row;
 
     public Deductions(String userID) {
-        this.scale = Integer.parseInt(employees.getScalePoint(userID));
-        this.roleID = employees.getRoleID(userID);
+        this.row = employees.getRowOf(userID);
+        this.scale = Integer.parseInt(row[2]);
+        this.roleID = row[1];
         this.salary = Double.parseDouble(payScale.salaryAtScalePoint(roleID, scale));
     }
 
