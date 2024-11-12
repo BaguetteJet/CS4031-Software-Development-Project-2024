@@ -38,4 +38,25 @@ public class CSVEmployees extends CSV {
     public boolean isFullTime(String UserID) {
         return isFullTime(getRowOf(UserID));
     }
+
+    public String getScalePoint(String userID) {
+        for (int i = 1; i < getData().size(); i++) {
+            String[] scalePoint = getData().get(i);
+            if (scalePoint[0].equals(userID)) {
+                return scalePoint[2];
+            }
+        }
+        return null;
+    }
+
+    public String getRoleID(String userID) {
+        for (int i = 1; i < getData().size(); i++) {
+            String[] getRole = getData().get(i);
+            if (getRole[0].equals(userID)) {
+                return getRole[1];
+            }
+        }
+        return null;
+    }
 }
+
