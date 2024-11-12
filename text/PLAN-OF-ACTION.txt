@@ -21,11 +21,11 @@ A) Employee:
   [PART-TIME] submit pay claim form
   [SOMETIMES] accept promotion
 
-B) Admin:
-  1. add new employee | DONE mostly
+B) Admin: | DONE
+  1. add new employee | DONE
       - username, password, type in Users CSV | DONE
-      - info in Employees CSV
-      - choose Role from Pay Scale CSV
+      - info in Employees CSV | DONE
+      - choose Role from Pay Scale CSV | DONE
 
 C) Human Resources:
   1. promote Employess

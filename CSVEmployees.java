@@ -30,8 +30,28 @@ public class CSVEmployees extends CSV {
             if (x.equals(""))
                 x = "null";
         }
-        
-        addRow(addRow);
+        readCSV();
+    }
+
+    public String[] selectEmployee(String UserID) {
+        for (String[] x : dataArray) {
+            if (x[0].equals(UserID))
+                return x;
+        }
+        return null;
+    }
+
+    public boolean isFullTime(String[] row) {
+        if (row[3].equals("Full-Time"))
+            return true;
+        return false;
+    }
+
+    public boolean isFullTime(String UserID) {
+        String[] row = selectEmployee(UserID);
+        if (row[3].equals("Full-Time"))
+            return true;
+        return false;
     }
 
 }

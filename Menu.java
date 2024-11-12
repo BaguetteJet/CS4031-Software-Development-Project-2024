@@ -11,6 +11,7 @@ public abstract class Menu {
     protected boolean more;
     protected String UserID;
     // Menu Style
+    protected String prefix;
     protected String defaultMessage;
     protected String lastMessage;
     protected String pageBreak;

@@ -7,7 +7,6 @@ import java.util.Arrays;
  * @version 1
  */
 public class MenuAdmin extends Menu {
-    private String prefix;
 
     /**
      * Constructor.
