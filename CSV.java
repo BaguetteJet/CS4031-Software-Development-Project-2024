@@ -7,7 +7,8 @@ import java.util.ArrayList;
 /** 
  * Abstract class of methods to operate reading and writing data to and from CSV file.
  * @author Igor Kochanski
- * @version 2
+ * @author Ciaran Whelan
+ * @version 4
  */
 public abstract class CSV {
     
@@ -81,12 +82,22 @@ public abstract class CSV {
         }
     }
 
+    /**
+     * Method to update a row
+     * @param value value to find row by
+     * @param column column to find value in
+     * @param newRow row that will replace previous
+     */
     protected void updateRow(String value, int column, String[] newRow) {
         ArrayList<String[]> newDataArray = getData();
         newDataArray.set(getIndexOfRow(value, column), newRow);
         updateData(newDataArray);
     }
 
+    /**
+     * Method to replace the content of CSV file with a new data set
+     * @param newData data set
+     */
     protected void updateData(ArrayList<String[]> newData) {
         try {
             if (newData.size() < 2) {
@@ -143,6 +154,10 @@ public abstract class CSV {
         }
     }
 
+    /**
+     * Method to print current data set.
+     * @param table data set
+     */
     protected void printData(ArrayList<String[]> table) {
         for (int i = 0; i < table.size(); i++) {
             String[] row = table.get(i);
@@ -155,8 +170,8 @@ public abstract class CSV {
 
     /**
      * Method to get row of matching first column value
-     * @param value value to find
-     * @return
+     * @param value value to find in column 0
+     * @return row found
      */
     protected String[] getRowOf(String value) {
         return getRowOf(value, 0);
@@ -166,7 +181,7 @@ public abstract class CSV {
      * Method to get row of matching column value
      * @param value value to find
      * @param column column to search
-     * @return
+     * @return row found
      */
     protected String[] getRowOf(String value, int column) {
         readCSV();
@@ -178,6 +193,12 @@ public abstract class CSV {
         return null;
     }
 
+    /**
+     * Method to get the index of a row
+     * @param value value to find
+     * @param column column to search
+     * @return index
+     */
     protected int getIndexOfRow(String value, int column) {
         readCSV();
         for (int i = 1; i < dataArray.size(); i++) {
