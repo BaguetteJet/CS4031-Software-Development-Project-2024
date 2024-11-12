@@ -54,7 +54,7 @@ public class MenuLogin extends Menu {
             break;
 
          case "H":
-            System.out.println("help");
+            System.out.println("To navigate the CLI");
             break;
 
          case "Q":
@@ -76,8 +76,8 @@ public class MenuLogin extends Menu {
             employee.run();
             break;
          case 'H':
-            System.out.println("HR NOT YET IMPLEMENTED");
-            //runHumanResources(userID);
+            MenuHumanResources humanResources = new MenuHumanResources(userID);
+            humanResources.run();
             break;
 
          default:
