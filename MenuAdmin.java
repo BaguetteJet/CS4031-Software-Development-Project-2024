@@ -141,10 +141,13 @@ public class MenuAdmin extends Menu {
         // employment roll
         System.out.print("Enter Employment Role ID: ");
         String roleID = in.nextLine();
-        if (payScaleCSV.checkRoleID(roleID).equals(null)) {
+        if (payScaleCSV.getRowOf(roleID) == null) {
             lastMessage = prefix + "! Invalid role ID.";
             return null;
         }
+        System.out.println(payScaleCSV.getRowOf(roleID)[1]);
+
+
         // employment scale point
         System.out.println(Arrays.toString(payScaleCSV.findAvailableScalePoints(roleID)));
         System.out.print("Enter scale point: ");

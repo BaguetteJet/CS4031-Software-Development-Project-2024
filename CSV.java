@@ -52,15 +52,6 @@ public abstract class CSV {
         }
     }
 
-    
-    /** 
-     * Method to get data of CSV file data.
-     * @return ArrayList<String[]> of rows where each String[] is a row
-     */
-    protected ArrayList<String[]> getData() {
-        return dataArray;
-    }
-
     /** 
      * Method to add a row to current data set and save it to the CSV file
      */
@@ -82,19 +73,67 @@ public abstract class CSV {
             }
             bufferedWriter.write("\n");
             bufferedWriter.close();
-            
+    
             readCSV();
         } 
         catch (Exception e) {
             System.out.println(e);
         }
+    }
 
+    protected void updateRow(String value, int column, String[] newRow) {
+        ArrayList<String[]> newDataArray = getData();
+        newDataArray.set(getIndexOfRow(value, column), newRow);
+        updateData(newDataArray);
+    }
+
+    protected void updateData(ArrayList<String[]> newData) {
+        try {
+            if (newData.size() < 2) {
+                throw new Exception("Data is empty.");
+            }
+            if (newData.get(0).length != dataArray.get(0).length) {
+                throw new Exception("Column mismatch between new and previous rows.");
+            }
+            
+            FileWriter fileWriter = new FileWriter(pathOfCSV, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (int j = 0; j < newData.size(); j++) {
+                String[] newRow = newData.get(j);
+                checkForEmpty(newRow);
+                for (int i = 0; i < newRow.length; i++) {
+                    bufferedWriter.write(newRow[i]);
+                    if (i < newRow.length - 1) {
+                        bufferedWriter.write(",");
+                    }
+                }
+                bufferedWriter.write("\n");
+            }
+            bufferedWriter.close();
+            fileWriter.close();
+    
+            readCSV();
+        } 
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    /** 
+     * Method to get data of CSV file data.
+     * @return ArrayList<String[]> of rows where each String[] is a row
+     */
+    protected ArrayList<String[]> getData() {
+        readCSV();
+        return dataArray;
     }
 
     /** 
      * Method to print current data held.
      */
     protected void printData() {
+        readCSV();
         for (int i = 0; i < dataArray.size(); i++) {
             String[] row = dataArray.get(i);
             for (int j = 0; j < dataArray.get(0).length; j++) {
@@ -102,6 +141,51 @@ public abstract class CSV {
             }
             System.out.println();
         }
+    }
+
+    protected void printData(ArrayList<String[]> table) {
+        for (int i = 0; i < table.size(); i++) {
+            String[] row = table.get(i);
+            for (int j = 0; j < table.get(0).length; j++) {
+                System.out.print(row[j] + " | ");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Method to get row of matching first column value
+     * @param value value to find
+     * @return
+     */
+    protected String[] getRowOf(String value) {
+        return getRowOf(value, 0);
+    }
+
+    /**
+     * Method to get row of matching column value
+     * @param value value to find
+     * @param column column to search
+     * @return
+     */
+    protected String[] getRowOf(String value, int column) {
+        readCSV();
+        for (int i = 1; i < dataArray.size(); i++) {
+            String[] row = dataArray.get(i);
+            if (row[column].equals(value))
+                return row;
+        }
+        return null;
+    }
+
+    protected int getIndexOfRow(String value, int column) {
+        readCSV();
+        for (int i = 1; i < dataArray.size(); i++) {
+            String[] row = dataArray.get(i);
+            if (row[column].equals(value))
+                return i;
+        }
+        return -1;
     }
 
     private String[] checkForEmpty(String[] s) {

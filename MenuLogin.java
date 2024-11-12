@@ -72,9 +72,11 @@ public class MenuLogin extends Menu {
             admin.run();
             break;
          case 'E':
-            //runEmployee(userID);
+            MenuEmployee employee = new MenuEmployee(userID);
+            employee.run();
             break;
          case 'H':
+            System.out.println("HR NOT YET IMPLEMENTED");
             //runHumanResources(userID);
             break;
 

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 /** 
  * Class to operate PayScale.csv file data, extends CSV class
  * @author Igor Kochanski
@@ -16,48 +17,27 @@ public class CSVPayScale extends CSV {
     }
 
     public void printRoles() {
-        System.out.println("RoleID  |  Role Name  |  Scale Points");
-        for (int i = 1; i < getData().size(); i++) {
-            String[] employee = getData().get(i);
-            System.out.printf("%s | %s\n", employee[0], employee[1]);
+        readCSV();
+        for (String[] x : dataArray) {
+            System.out.printf("%s | %s\n", x[0], x[1]);
         }
-    }
-
-    public String checkRoleID(String roleID) {
-        for (int i = 1; i < getData().size(); i++) {
-           String[] row = getData().get(i);
-           if (row[0].equals(roleID)) {
-                return row[0];
-           }
-        }
-        return null;
     }
 
     public String salaryAtScalePoint(String RoleID, int ScalePoint) {
-        for (int i = 1; i < getData().size(); i++) {
-            String[] employee = getData().get(i);
-            if (employee[0].equals(RoleID)) {
-                return employee[ScalePoint + 2];
-            }
-        }
-        return null;
+        String[] row = getRowOf(RoleID);
+        if (row == null)
+            return null;
+        return row[ScalePoint + 1];
     }
 
-    public String[] findAvailableScalePoints(String RoleID) {
-        for (int i = 1; i < getData().size(); i++) {
-            String[] employee = getData().get(i);
-            if (employee[0].equals(RoleID)) {
-                return findAvailableScalePoints(employee);
-            }
-        }
-        return null;
-    }
-
-    private String[] findAvailableScalePoints(String[] employee) {
+    public String[] findAvailableScalePoints(String roleID) {
+        String[] row = getRowOf(roleID);
+        if (row == null)
+            return null;
         String[] payScale = getData().get(0);
         ArrayList<String> points = new ArrayList<String>();
-        for (int i = 2; i < employee.length; i++) {
-            if (!employee[i].equals("null")) {
+        for (int i = 2; i < row.length; i++) {
+            if (!row[i].equals("null")) {
                 points.add(payScale[i]);
             }
         }

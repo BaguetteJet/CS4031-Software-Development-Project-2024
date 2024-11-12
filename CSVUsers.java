@@ -39,13 +39,9 @@ public class CSVUsers extends CSV {
      */
     public boolean checkUsernameAvailable(String username) {
         readCSV();
-        for (int i = 1; i < dataArray.size(); i++) {
-            String[] user = dataArray.get(i);
-            if (username.equals(user[1])) {
-                return false;
-            }
-        }
-        return true;
+        if (getRowOf(username, 1) == null)
+            return true;
+        return false;
     }
 
     /**
@@ -65,8 +61,7 @@ public class CSVUsers extends CSV {
      * @return String new User ID
      */
     public String createEmployee(String username, String password) {
-        String newUserID = createUser("E", username, password);
-        return newUserID;
+        return createUser("E", username, password);
     }
 
     /**
@@ -76,8 +71,7 @@ public class CSVUsers extends CSV {
      * @return String new User ID
      */
     public String createHumanResources(String username, String password) {
-        String newUserID = createUser("H", username, password);
-        return newUserID;
+        return createUser("H", username, password);
     }
 
     private String createUser(String type, String username, String password) {
