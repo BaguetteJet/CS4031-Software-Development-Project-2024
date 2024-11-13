@@ -92,4 +92,13 @@ public class Deductions extends CSV {
             return (salary * 0.04) /12;
         }
     }
+
+    public void addPaySlip(String FullName, String PPSN, String UserID, String Position, String GrossPay, String PAYE, String PRSI, String USC, String NetPay, String Date) {
+        String[] addRow = {FullName, PPSN,  UserID, Position, GrossPay, PAYE, PRSI, USC, NetPay, Date};
+        for (String x : addRow) {
+            if (x.equals(""))
+                x = "null";
+        }
+        readCSV();
+    }
 }
