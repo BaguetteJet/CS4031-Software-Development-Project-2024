@@ -157,7 +157,7 @@ public class MenuAdmin extends Menu {
             return null;
         }
         // employment type
-        System.out.print("Select Employment Type:\nF)ull-Time   P)art-Time");
+        System.out.print("Select Employment Type:\nF)ull-Time   P)art-Time\n-> ");
         String typeOfEmployment = in.nextLine().toUpperCase();
         switch (typeOfEmployment) {
             case "F":

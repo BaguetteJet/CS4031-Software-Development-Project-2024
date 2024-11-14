@@ -27,7 +27,7 @@ public class MenuLogin extends Menu {
 
    private void mainMenu() {
 
-      System.out.printf("%s\n%s\n%s\n%s\n", pageSpace, pageBreak, lastMessage, pageBreak);
+      System.out.printf("%s\n%s\n%s\n", pageBreak, lastMessage, pageBreak);
       lastMessage = defaultMessage;
       System.out.print("L)ogin   H)elp   Q)uit\n-> ");
       String command = in.nextLine().toUpperCase();
@@ -54,7 +54,7 @@ public class MenuLogin extends Menu {
             break;
 
          case "H":
-            System.out.println("To navigate the CLI");
+            System.out.println("\n1. Log into an account to use.\n2. Admin and HR accounts are not\nemployee accounts");
             break;
 
          case "Q":
