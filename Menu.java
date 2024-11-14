@@ -28,9 +28,9 @@ public abstract class Menu {
     public Menu() {
         more = true;
         UserID = null;
-        defaultMessage = "   Welcome to UL Payroll System";
+        defaultMessage = "     Welcome to UL Payroll System";
         pageBreak = "--------------------------------------------";
-        pageSpace = "\n\n";
+        pageSpace = "\n";
         charRegex = "[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$&+:;=?@#|'<>.^*()%!-]+";
 
         in = new Scanner(System.in);

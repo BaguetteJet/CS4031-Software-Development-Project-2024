@@ -1,42 +1,17 @@
-import java.util.ArrayList;
-
-public class Deductions extends CSV {
+public class Deductions {
 
     private CSVPayScale payScale;
     private CSVEmployees employees;
-    private ArrayList<String[]> employeeCSV = employees.getData(), payScaleCSV = payScale.getData();
-    private double salary;
+    private final String roleID;
+    private final double salary;
+    private final int scale;
+    private String[] row;
 
-    public Deductions(String pathOfCSV) {
-        super(pathOfCSV);
-        readCSV();
-    }
-
-    public void getScalePoint(String userID, String scale) {
-        for(int i = 1; i < employeeCSV.size(); i++){
-            String[] scalePoint = employeeCSV.get(i);
-            if (scalePoint[0].equals(userID)) {
-                scale = scalePoint[2];
-            }
-        }
-    }
-
-    public void getRoleID(String userID, String roleID) {
-        for(int i = 1; i < employeeCSV.size(); i++){
-            String[] getRole = employeeCSV.get(i);
-            if (getRole[0].equals(userID)) {
-                roleID = getRole[1];
-            }
-        }
-    }
-
-    public void getSalary(String roleID, String scale, String salary) {
-        for (int i = 1; i < payScaleCSV.size(); i++) {
-            String[] findSalary = payScaleCSV.get(i);
-            if (findSalary[0].equals(roleID)) {
-                salary = findSalary[Integer.parseInt(scale) + 2];
-            }
-        }
+    public Deductions(String userID) {
+        this.row = employees.getRowOf(userID);
+        this.scale = Integer.parseInt(row[2]);
+        this.roleID = row[1];
+        this.salary = Double.parseDouble(payScale.salaryAtScalePoint(roleID, scale));
     }
 
     public double getGrossMonthly() {
@@ -45,7 +20,7 @@ public class Deductions extends CSV {
 
     //Calculate PAYE on salary
     public double getPAYE() {
-        double MonthlyEarnings = salary / 12;
+        double MonthlyEarnings = getGrossMonthly();
         if (MonthlyEarnings <= 3500) {
             return MonthlyEarnings * 0.2;
         } else {

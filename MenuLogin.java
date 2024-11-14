@@ -54,7 +54,7 @@ public class MenuLogin extends Menu {
             break;
 
          case "H":
-            System.out.println("help");
+            System.out.println("To navigate the CLI");
             break;
 
          case "Q":
@@ -72,10 +72,12 @@ public class MenuLogin extends Menu {
             admin.run();
             break;
          case 'E':
-            //runEmployee(userID);
+            MenuEmployee employee = new MenuEmployee(userID);
+            employee.run();
             break;
          case 'H':
-            //runHumanResources(userID);
+            MenuHumanResources humanResources = new MenuHumanResources(userID);
+            humanResources.run();
             break;
 
          default:
