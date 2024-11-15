@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Class to run the Employee menu of the system, extends Menu.
  * 
@@ -49,6 +51,7 @@ public class MenuHumanResources extends Menu {
                 break;
 
             case "P": // promote employee
+                promotePrompt();
                 break;
 
             case "Q": // quit back to main system menu
@@ -56,5 +59,32 @@ public class MenuHumanResources extends Menu {
                 more = false;
                 return;
         }
+    }
+
+    private void promotePrompt() {
+        ArrayList<String> canPromote = listForPromotion();
+        if (canPromote.size() == 0)
+            return;
+        System.out.println("Choose employee to promote.\nUserID: ");
+        String userToPromote = in.nextLine().toUpperCase();
+        if (canPromote.contains(userToPromote)) {
+            // promote user function ! ! !
+            System.out.println("Promoted " + userToPromote);
+        }
+    }
+
+    private ArrayList<String> listForPromotion() {
+        employeesCSV.readCSV();
+        ArrayList<String> ans = new ArrayList<String>();
+        for (String[] row : employeesCSV.dataArray) {
+            if (payScaleCSV.isPromotable(row[1], row[2]) && row[3].equals("Full-Time")) {
+                System.out.printf("%s | %s\n", row[0], row[5]);
+                ans.add(row[0]);
+            }
+        }
+        if (ans.size() == 0) {
+            System.out.println("NO EMPLOYEES TO PROMOTE");
+        }
+        return ans;
     }
 }

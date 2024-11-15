@@ -43,4 +43,13 @@ public class CSVPayScale extends CSV {
         }
         return points.toArray(new String[points.size()]);
     }
+
+    public boolean isPromotable(String roleID, String scalePoint) {
+        String[] row = getRowOf(roleID);
+        if (Integer.valueOf(scalePoint) + 2 >= row.length)
+            return false;
+        if (row[Integer.valueOf(scalePoint) + 2].equals("null"))
+            return false;
+        return true;
+    }
 }

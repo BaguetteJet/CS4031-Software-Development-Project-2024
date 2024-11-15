@@ -68,12 +68,11 @@ public class Deductions {
         }
     }
 
-    public void addPaySlip(String FullName, String PPSN, String UserID, String Position, String GrossPay, String PAYE, String PRSI, String USC, String NetPay, String Date) {
-        String[] addRow = {FullName, PPSN,  UserID, Position, GrossPay, PAYE, PRSI, USC, NetPay, Date};
+    public void addPaySlip(String UserID, String FullName, String PPSN, String Position, String GrossPay, String PAYE, String PRSI, String USC, String NetPay, String Date) {
+        String[] addRow = {UserID, FullName, PPSN, Position, GrossPay, PAYE, PRSI, USC, NetPay, Date};
         for (String x : addRow) {
             if (x.equals(""))
                 x = "null";
         }
-        readCSV();
     }
 }
