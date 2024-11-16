@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 /**
  * Class to run the Employee menu of the system, extends Menu.
  * 
@@ -46,11 +45,11 @@ public class MenuHumanResources extends Menu {
 
         // choice
         switch (command) {
-            case "V": // view details
+            case "V": // view details of all employees
                 employeesCSV.printData();
                 break;
 
-            case "P": // promote employee
+            case "P": // promote an employee
                 promotePrompt();
                 break;
 
@@ -61,22 +60,29 @@ public class MenuHumanResources extends Menu {
         }
     }
 
+    // promote an employee
     private void promotePrompt() {
+        // list available for promotion
         ArrayList<String> canPromote = listForPromotion();
         if (canPromote.size() == 0)
             return;
+        // choose employee
         System.out.println("Choose employee to promote.\nUserID: ");
         String userToPromote = in.nextLine().toUpperCase();
         if (canPromote.contains(userToPromote)) {
-            // promote user function ! ! !
+
+// ADD promote user function ! ! ! < - - - - 
+
             System.out.println("Promoted " + userToPromote);
         }
     }
 
+    // find promotable employees
     private ArrayList<String> listForPromotion() {
         employeesCSV.readCSV();
         ArrayList<String> ans = new ArrayList<String>();
         for (String[] row : employeesCSV.dataArray) {
+            // check if Full-Time and next scale point possible
             if (payScaleCSV.isPromotable(row[1], row[2]) && row[3].equals("Full-Time")) {
                 System.out.printf("%s | %s\n", row[0], row[5]);
                 ans.add(row[0]);

@@ -23,8 +23,10 @@ public class CSVUsers extends CSV {
      */
     public String checkLogin(String username, String password) {
         readCSV();
+        // check each user
         for (int i = 1; i < dataArray.size(); i++) {
            String[] row = dataArray.get(i);
+           // check if username -> password combination exists
            if (row[1].equals(username) && row[2].equals(password)) {
                 return row[0];
            }
@@ -74,6 +76,7 @@ public class CSVUsers extends CSV {
         return createUser("H", username, password);
     }
 
+    // general user creation
     private String createUser(String type, String username, String password) {
         String newUserID = generateID(getData(), type);
         String[] addRow = {newUserID, username, password};
@@ -81,17 +84,22 @@ public class CSVUsers extends CSV {
         return newUserID;
     }
 
+    // unique ID generation
     private String generateID(ArrayList<String[]> Users, String type) {
         int numID;
         String newUserID = null;
         boolean unique = false;
         while (!unique) {
-            unique = true; // assume then prove wrong
+            // assume unique
+            unique = true;
+            // generate an ID
             numID = (int)(Math.random() * 9999999);
             newUserID = String.format("%07d", numID);
+            // check if already exists
             for (int i = 1; i < Users.size(); i++) {
                 String[] row = Users.get(i);
                 String oldUserID = row[0].substring(1);
+                // retry if ID alreay exists
                 if (oldUserID.equals(newUserID)) {
                     unique = false;
                     break;

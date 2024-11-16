@@ -1,8 +1,17 @@
 TO DO LIST:
-- everything...
+- promotions
+- pay slips
+- update system
+- pay roll
+- part time forms
+- documentation
+- diagrams
 
 DONE:
-- somethign !
+- login menu & system
+- 3 user type menus
+- employee data storage and retrieval
+- pay scale
 
 MENU
 > UPDATE & GENERATE INFORMATION in Pay Slips CSV
@@ -15,8 +24,8 @@ MENU
   2. ask for password | DONE
   3. redirect of login successfull | DONE
 
-A) Employee:
-  1. view personal info
+A) Employee: | nearly DONE
+  1. view personal info | DONE
   2. view payslips
   [PART-TIME] submit pay claim form
   [SOMETIMES] accept promotion
@@ -27,7 +36,7 @@ B) Admin: | DONE
       - info in Employees CSV | DONE
       - choose Role from Pay Scale CSV | DONE
 
-C) Human Resources:
+C) Human Resources: | nearly DONE
   1. promote Employess
 
 ---------------------------------
@@ -38,7 +47,8 @@ CSV files layout: working progress
   (String) | (String) | (String)
 . . .
 
-2. Employees
+2. Employees | DONE
+changes schema
 User ID |   Name   | Address  | phone |  email   | Start Date | scale | Role ID |   Role   | info..... ADD MORE
  (int)  | (String) | (String) | (int) | (String) | (DateTime) | (int) |  (int)  | (String) |  . . .
 . . .
@@ -48,6 +58,7 @@ Role ID | Scale | Annual Rate
  (int)  | (int) | (double)
 
 4. Pay Slips
+confirm?
 User ID | Formatted Pay Slip
  (int)  | (String) ???
 . . .

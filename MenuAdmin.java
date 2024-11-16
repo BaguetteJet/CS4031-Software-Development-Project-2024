@@ -1,5 +1,4 @@
 import java.util.Arrays;
-
 /**
  * Class to run the Admin menu of the system, extends Menu.
  * 

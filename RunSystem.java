@@ -1,8 +1,8 @@
 /**
  * Main class to run the UL Payroll System
  * @author Igor Kochanski - 23358459
- * @author Ciaran Whelan
- * @author Luke Scanlon
+ * @author Ciaran Whelan - 
+ * @author Luke Scanlon - 
  */
 public class RunSystem {
     /**
@@ -10,7 +10,9 @@ public class RunSystem {
      * @param args
      */
     public static void main(String[] args) {
+        UpdateSystem updateSystem = new UpdateSystem();
         MenuLogin loginMenu = new MenuLogin();
+        updateSystem.updateAll();
         loginMenu.run();
     }
 }

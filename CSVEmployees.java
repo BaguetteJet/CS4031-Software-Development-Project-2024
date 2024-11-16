@@ -29,12 +29,22 @@ public class CSVEmployees extends CSV {
         addRow(newRow);
     }
 
+    /**
+     * Method to check if employee is Full-Time
+     * @param row details of employee
+     * @return true if Full-Time
+     */
     public boolean isFullTime(String[] row) {
         if (row[3].equals("Full-Time"))
             return true;
         return false;
     }
 
+    /**
+     * Method to check if employee is Full-Time
+     * @param UserID user ID of employee
+     * @return true if Full-Time
+     */
     public boolean isFullTime(String UserID) {
         return isFullTime(getRowOf(UserID));
     }

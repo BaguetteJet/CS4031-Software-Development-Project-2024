@@ -16,9 +16,10 @@ public class MenuLogin extends Menu {
     * Method to run the login menu.
     */
    public void run(){
-      usersCSV.printData(); // test
+      usersCSV.printData(); // FOR TESTING PURPOSES
 
       lastMessage = defaultMessage;
+      // keep running menu
       while (more) {
          mainMenu();
       }
@@ -27,13 +28,17 @@ public class MenuLogin extends Menu {
 
    private void mainMenu() {
 
+      // menu message
       System.out.printf("%s\n%s\n%s\n", pageBreak, lastMessage, pageBreak);
       lastMessage = defaultMessage;
+
+      // options
       System.out.print("L)ogin   H)elp   Q)uit\n-> ");
       String command = in.nextLine().toUpperCase();
 
+      // choice
       switch (command) {
-         case "L":
+         case "L": // user login
             System.out.print("Username: ");
             String username = in.nextLine();
             System.out.print("Password: ");
@@ -43,7 +48,7 @@ public class MenuLogin extends Menu {
                lastMessage = "! Input cannot be empty";
                break;
             }
-
+            // check if correct login
             String UserID = usersCSV.checkLogin(username, password);
 
             if (UserID == null) {
@@ -53,11 +58,11 @@ public class MenuLogin extends Menu {
             runUserMenu(UserID);
             break;
 
-         case "H":
+         case "H": // display help message
             System.out.println("\n1. Log into an account to use.\n2. Admin and HR accounts are not\nemployee accounts");
             break;
 
-         case "Q":
+         case "Q": // quit system
             System.out.printf("%s\n%s\n   Goodbye.\n%s\n", pageSpace, pageBreak, pageBreak);
             more = false;
             break;

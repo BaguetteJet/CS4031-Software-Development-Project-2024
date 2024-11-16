@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 /** 
  * Abstract class of methods to operate menus.
  * @author Igor Kochanski
@@ -34,7 +33,7 @@ public abstract class Menu {
         charRegex = "[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$&+:;=?@#|'<>.^*()%!-]+";
 
         in = new Scanner(System.in);
-        // load usersCSV
+        // load CSV files
         loadData();
     }
 
