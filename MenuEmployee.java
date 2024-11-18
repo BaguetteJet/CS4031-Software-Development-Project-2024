@@ -61,7 +61,13 @@ public class MenuEmployee extends Menu {
         switch (command) {
             case "V": // view details
                 String[] job = payScaleCSV.getRowOf(details[1]);
-                System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\nScale Point: %s\nSalary: %,d EUR\n", details[0], details[5], job[1], details[1], details[3], details[4], details[2], Integer.valueOf(job[Integer.valueOf(details[2]) + 1]));
+                String salary;
+                try {
+                    salary = String.format("%,d EUR", job[Integer.valueOf(details[2]) + 1]);
+                    } catch(Exception e) {  
+                    salary = "NOT AVAILABLE";
+                    }
+                System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\nScale Point: %s\nSalary: %,d EUR\n", details[0], details[5], job[1], details[1], details[3], details[4], details[2], salary);
                 break;
 
             case "P": // display pay slips
@@ -89,7 +95,7 @@ public class MenuEmployee extends Menu {
                     } catch(Exception e) {  
                     lastMessage = prefix + "Invalid Hours Entered";
                     break;
-                    } 
+                } 
                 break;
 
             case "Q": // quit back to main system menu

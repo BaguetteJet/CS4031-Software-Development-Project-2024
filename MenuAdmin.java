@@ -147,23 +147,6 @@ public class MenuAdmin extends Menu {
 
         System.out.println(payScaleCSV.getRowOf(roleID)[1]);
 
-        // employment type
-        System.out.print("Select Employment Type:\nF)ull-Time   P)art-Time\n-> ");
-        String typeOfEmployment = in.nextLine().toUpperCase();
-        switch (typeOfEmployment) {
-            case "F":
-                typeOfEmployment = "Full-Time";
-                break;
-
-            case "P":
-                typeOfEmployment = "Part-Time";
-                break;
-        
-            default:
-            lastMessage = prefix + "! Invalid employment type.";
-                return null;
-        }
-
         // start date
         System.out.print("Start Date (yyyy-mm-dd): ");
         String startDate = in.nextLine();
@@ -172,8 +155,26 @@ public class MenuAdmin extends Menu {
             return null;
         }
 
-        String scalePoint = payScaleCSV.getCorrectScalePoint(roleID, startDate);
-        if (scalePoint == null) scalePoint = "null";
+        // employment type
+        System.out.print("Select Employment Type:\nF)ull-Time   P)art-Time\n-> ");
+        String typeOfEmployment = in.nextLine().toUpperCase();
+        String scalePoint;
+        switch (typeOfEmployment) {
+            case "F":
+                typeOfEmployment = "Full-Time";
+                scalePoint = payScaleCSV.getCorrectScalePoint(roleID, startDate);
+                if (scalePoint == null) scalePoint = "null";
+                break;
+
+            case "P":
+                typeOfEmployment = "Part-Time";
+                scalePoint = "null";
+                break;
+        
+            default:
+            lastMessage = prefix + "! Invalid employment type.";
+                return null;
+        }
 
         // name
         System.out.print("Full Name: ");
