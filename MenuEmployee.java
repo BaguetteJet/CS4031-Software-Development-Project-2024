@@ -47,7 +47,7 @@ public class MenuEmployee extends Menu {
         if (fullTime && true) // and promotion
             optional = "A)ccept promotion   ";
         
-        else if (!fullTime && true) // and form to fill in
+        else if (!fullTime && payClaimsCSV.getRowOf(UserID) == null) // and form to fill in
             optional = "F)ill Pay Claim   ";
 
         else 
@@ -65,7 +65,7 @@ public class MenuEmployee extends Menu {
                 break;
 
             case "P": // display pay slips
-                
+
                 break;
 
             case "TEST": // display pay slips
@@ -76,13 +76,20 @@ public class MenuEmployee extends Menu {
             case "A":
                 if (!optional.equals("A)ccept promotion   ")) // and promotion
                     break;
-
                 break;
             
             case "F":
                 if (!optional.equals("F)ill Pay Claim   ")) // and promotion
                     break;
-
+                System.out.print("Enter Hours: ");
+                String hours = in.nextLine().toUpperCase();
+                try {  
+                    Double.parseDouble(hours);
+                    payClaimsCSV.addClaim(UserID, hours);  
+                    } catch(Exception e) {  
+                    lastMessage = prefix + "Invalid Hours Entered";
+                    break;
+                    } 
                 break;
 
             case "Q": // quit back to main system menu
