@@ -1,11 +1,37 @@
 TO DO LIST:
+
 - promotions
-- pay slips
+  - role IDs
+  - checks for update
+  - check if part-time
+  - save promotion for user to accept
+
 - update system
-- pay roll
-- part time forms
+  - checks and saves date
+  - generate payroll
+  - generate pay slips
+
+- pay slips
+  - write to CSV
+  - save hours of part-time
+  - form for part time
+  - acccept promotion
+
 - documentation
 - diagrams
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DONE:
 - login menu & system
