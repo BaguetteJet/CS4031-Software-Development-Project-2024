@@ -1,11 +1,45 @@
 TO DO LIST:
+
 - promotions
-- pay slips
+  - update role IDs CIARAN
+  - checks for update LUKE
+  - check if part-time DONE
+  - save promotion for user to accept CIARAN
+
 - update system
-- pay roll
-- part time forms
+  - checks and saves date LUKE
+  - generate payroll LUKE
+  - generate pay slips LUKE
+
+- pay slips
+  - write to CSV LUKE
+  - save hours of part-time IGOR
+  - form for part time IGOR
+  - acccept promotion CIARAN 
+
+- menus IGOR
+  - DISPLAY USER PAY SLIPS
+  - select to be promoted
+  - send back choice
+  - check if id in list of promotions
+  - accept
+  - part time fill hours IGOR
+
 - documentation
 - diagrams
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DONE:
 - login menu & system
