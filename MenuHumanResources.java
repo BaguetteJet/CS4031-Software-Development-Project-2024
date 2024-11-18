@@ -63,7 +63,7 @@ public class MenuHumanResources extends Menu {
     // promote an employee
     private void promotePrompt() {
         // list available for promotion
-        ArrayList<String> canPromote = listForPromotion();
+        ArrayList<String> canPromote = null;
         if (canPromote.size() == 0)
             return;
         // choose employee
@@ -75,22 +75,5 @@ public class MenuHumanResources extends Menu {
 
             System.out.println("Promoted " + userToPromote);
         }
-    }
-
-    // find promotable employees
-    private ArrayList<String> listForPromotion() {
-        employeesCSV.readCSV();
-        ArrayList<String> ans = new ArrayList<String>();
-        for (String[] row : employeesCSV.dataArray) {
-            // check if Full-Time and next scale point possible
-            if (payScaleCSV.isPromotable(row[1], row[2]) && row[3].equals("Full-Time")) {
-                System.out.printf("%s | %s\n", row[0], row[5]);
-                ans.add(row[0]);
-            }
-        }
-        if (ans.size() == 0) {
-            System.out.println("NO EMPLOYEES TO PROMOTE");
-        }
-        return ans;
     }
 }

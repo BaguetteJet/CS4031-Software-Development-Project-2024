@@ -144,17 +144,9 @@ public class MenuAdmin extends Menu {
             lastMessage = prefix + "! Invalid role ID.";
             return null;
         }
+
         System.out.println(payScaleCSV.getRowOf(roleID)[1]);
 
-
-        // employment scale point
-        System.out.println(Arrays.toString(payScaleCSV.findAvailableScalePoints(roleID)));
-        System.out.print("Enter scale point: ");
-        String scalePoint = in.nextLine();
-        if (payScaleCSV.salaryAtScalePoint(roleID, Integer.parseInt(scalePoint)) == null) {
-            lastMessage = prefix + "! Invalid scale point.";
-            return null;
-        }
         // employment type
         System.out.print("Select Employment Type:\nF)ull-Time   P)art-Time\n-> ");
         String typeOfEmployment = in.nextLine().toUpperCase();
@@ -171,6 +163,7 @@ public class MenuAdmin extends Menu {
             lastMessage = prefix + "! Invalid employment type.";
                 return null;
         }
+
         // start date
         System.out.print("Start Date (yyyy-mm-dd): ");
         String startDate = in.nextLine();
@@ -178,6 +171,10 @@ public class MenuAdmin extends Menu {
             lastMessage = prefix + "! Invalid date format.";
             return null;
         }
+
+        String scalePoint = payScaleCSV.getCorrectScalePoint(roleID, startDate);
+        if (scalePoint == null) scalePoint = "null";
+
         // name
         System.out.print("Full Name: ");
         String fullName = in.nextLine();

@@ -65,6 +65,7 @@ public class MenuEmployee extends Menu {
                 break;
 
             case "P": // display pay slips
+                
                 break;
 
             case "TEST": // display pay slips

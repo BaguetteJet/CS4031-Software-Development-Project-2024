@@ -144,6 +144,15 @@ public abstract class CSV {
         }
     }
 
+    /**
+     * Method to clear csv file data leaving the first row
+     */
+    protected void clearData() {
+        ArrayList<String[]> array = new ArrayList<String[]>();
+        array.add(getData().get(0));
+        updateData(array);
+    }
+
     /** 
      * Method to get data of CSV file data.
      * @return ArrayList<String[]> of rows where each String[] is a row
