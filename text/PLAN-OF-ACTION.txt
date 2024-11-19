@@ -13,8 +13,8 @@ TO DO LIST:
 
 - pay slips
   - write to CSV LUKE
-  - save hours of part-time IGOR
-  - form for part time IGOR
+  - save hours of part-time | DONE
+  - form for part time | DONE
   - acccept promotion CIARAN 
 
 - menus IGOR
@@ -23,7 +23,7 @@ TO DO LIST:
   - send back choice
   - check if id in list of promotions
   - accept
-  - part time fill hours IGOR
+  - part time fill hours | DONE
 
 - documentation
 - diagrams
