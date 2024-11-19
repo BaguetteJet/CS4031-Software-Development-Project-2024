@@ -99,9 +99,14 @@ public class MenuEmployee extends Menu {
     private void displayPaySlips() {
         for (String[] x : paySlipsCSV.getData()) {
             if (x[0].equals(UserID)) {
-                System.out.println(pageBreak);
-                System.out.printf("University of Limerick\nname: %s\ndate: %s\n", details[5], x[7]);
-                System.out.println(pageBreak);
+                try {
+                    System.out.println(pageBreak);
+                    System.out.printf(" > University of Limerick <\n Name: %s\n Date: %s\n Role: %s\n", details[5], x[7], job[1]);
+                    System.out.printf(" Gross Pay: %,12.2f EUR\n      PAYE: %,12.2f EUR\n      PRSI: %,12.2f EUR\n       USC: %,12.2f EUR\n   Net Pay: %,12.2f EUR\n", Double.parseDouble(x[2]), Double.parseDouble(x[3]), Double.parseDouble(x[4]), Double.parseDouble(x[5]), Double.parseDouble(x[6]));
+                    System.out.println(pageBreak);
+                } catch (Exception e) {
+                    System.out.println("FORMAT ERROR");
+                }
             }
         }
     }
