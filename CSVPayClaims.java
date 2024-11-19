@@ -1,5 +1,5 @@
 /** 
- * Class to operate Employees.csv file data, extends CSV class
+ * Class to operate PaySlips.csv file data, extends CSV class
  * @author Igor Kochanski
  * @version 1
  */
@@ -7,7 +7,7 @@ public class CSVPayClaims extends CSV {
     
     /** 
      * Constructor.
-     * @param pathOfCSV path of Employees.CSV
+     * @param pathOfCSV path of PaySlips.CSV
      */
     public CSVPayClaims (String pathOfCSV) {
         super(pathOfCSV);

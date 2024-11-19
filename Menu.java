@@ -21,6 +21,7 @@ public abstract class Menu {
     protected CSVEmployees employeesCSV;
     protected CSVPayScale payScaleCSV;
     protected CSVPayClaims payClaimsCSV;
+    protected CSVPaySlips paySlipsCSV;
 
     /**
      * Constructor.
@@ -48,5 +49,6 @@ public abstract class Menu {
         payScaleCSV = new CSVPayScale("data\\PayScale.csv");
         employeesCSV = new CSVEmployees("data\\Employees.csv");
         payClaimsCSV = new CSVPayClaims("data\\PayClaims.csv");
+        paySlipsCSV = new CSVPaySlips("data\\PaySlips.csv");
     }
 }

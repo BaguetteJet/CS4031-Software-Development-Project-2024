@@ -7,6 +7,7 @@
 public class MenuEmployee extends Menu {
     // code to get info, payslips, accept promotions
     private String[] details;
+    private String[] job;
     private String optional;
     private Boolean fullTime;
 
@@ -30,6 +31,7 @@ public class MenuEmployee extends Menu {
         lastMessage = defaultMessage;
         details = employeesCSV.getRowOf(UserID);
         fullTime = employeesCSV.isFullTime(details);
+        job = payScaleCSV.getRowOf(details[1]);
 
         // keep running menu
         while (more) {
@@ -60,18 +62,12 @@ public class MenuEmployee extends Menu {
         // choice
         switch (command) {
             case "V": // view details
-                String[] job = payScaleCSV.getRowOf(details[1]);
                 if (fullTime) System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\nScale Point: %s\nSalary: %,d EUR\n", details[0], details[5], job[1], details[1], details[3], details[4], details[2], Integer.valueOf(job[Integer.valueOf(details[2]) + 1]));
                 else System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\n", details[0], details[5], job[1], details[1], details[3], details[4]);
                 break;
 
             case "P": // display pay slips
-
-                break;
-
-            case "TEST": // display pay slips
-                details[5] = "TEST";
-                employeesCSV.updateRow(UserID, 0, details);
+                displayPaySlips();
                 break;
 
             case "A":
@@ -79,7 +75,7 @@ public class MenuEmployee extends Menu {
                     break;
                 break;
             
-            case "F":
+            case "F": // fill in pay claim
                 if (!optional.equals("F)ill Pay Claim   ")) // and promotion
                     break;
                 System.out.print("Enter Hours: ");
@@ -97,6 +93,16 @@ public class MenuEmployee extends Menu {
                 System.out.printf("%s\n   Logged Out\n%s\n", pageBreak, pageBreak);
                 more = false;
                 return;
+        }
+    }
+    //UserID,Position,GrossPay,PAYE,PRSI,USC,NetPay,Date
+    private void displayPaySlips() {
+        for (String[] x : paySlipsCSV.getData()) {
+            if (x[0].equals(UserID)) {
+                System.out.println(pageBreak);
+                System.out.printf("University of Limerick\nname: %s\ndate: %s\n", details[5], x[7]);
+                System.out.println(pageBreak);
+            }
         }
     }
 }
