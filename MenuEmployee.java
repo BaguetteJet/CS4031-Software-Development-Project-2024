@@ -46,7 +46,7 @@ public class MenuEmployee extends Menu {
         System.out.printf("%s\n%s\n%s\n", pageBreak, lastMessage, pageBreak);
         lastMessage = defaultMessage;
 
-        if (fullTime && promotions.getRowOf(UserID) != null) // and promotion
+        if (fullTime && promotionsCSV.getRowOf(UserID) != null) // and promotion
             optional = "A)ccept promotion   ";
         
         else if (!fullTime && payClaimsCSV.getRowOf(UserID) == null) // and form to fill in
@@ -79,7 +79,7 @@ public class MenuEmployee extends Menu {
                 String accept = in.nextLine().toUpperCase();
 
                 if (accept.equals("Y")) {
-                    promotions.promoteEmployee(UserID); 
+                    promotionsCSV.promoteEmployee(UserID); 
                     System.out.println("Promotion accepted.");
                 } 
                 else {

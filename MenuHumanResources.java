@@ -53,6 +53,10 @@ public class MenuHumanResources extends Menu {
                 promotePrompt();
                 break;
 
+            case "PromoteTEST": // promote an employee
+                promotionsCSV.findPromotions();
+                break;
+
             case "Q": // quit back to main system menu
                 System.out.printf("%s\n   Logged Out\n%s\n", pageBreak, pageBreak);
                 more = false;
@@ -63,24 +67,24 @@ public class MenuHumanResources extends Menu {
     // promote an employee
     private void promotePrompt() {
         // list available for promotion
-        ArrayList<String[]> canPromote = promotions.getData();
+        ArrayList<String[]> canPromote = promotionsCSV.getData();
         if (canPromote.size() <= 1){
             System.out.println("No available employees to promote");
             return;
         }
         // choose employee
         System.out.println("Choose employee to promote.");
-        promotions.printData();
+        promotionsCSV.printData();
         String userToPromote = in.nextLine().toUpperCase();
 
-        String row[] = promotions.getRowOf(userToPromote);
+        String row[] = promotionsCSV.getRowOf(userToPromote);
         if (row == null) {
             System.out.println("Invalid UserID");
             return;
         }
         row[1] = "Yes";
 
-        promotions.updateRow(userToPromote, 0, row);
+        promotionsCSV.updateRow(userToPromote, 0, row);
         System.out.println("Promoted " + userToPromote);
     }
 }
