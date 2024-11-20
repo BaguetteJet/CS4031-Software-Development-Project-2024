@@ -7,7 +7,7 @@ public class CSVPayRoll extends CSV {
         super(pathOfCSV);
         readCSV();
 
-        employees = new CSVEmployees("\\Employees.csv");
+        employees = new CSVEmployees("data\\Employees.csv");
         payScale = new CSVPayScale("data\\PayScale.csv");
     }
 

@@ -6,8 +6,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**
- * Abstract class of methods to operate reading and writing data to and from CSV
- * file.
+ * Abstract class of methods to operate reading and writing data to and from CSV file.
  *
  * @author Igor Kochanski
  * @author Ciaran Whelan
@@ -16,8 +15,7 @@ import java.util.ArrayList;
 public abstract class CSV {
 
     /**
-     * ArrayList<> of String[] rows, each element of String[] is different
-     * column.
+     * ArrayList<> of String[] rows, each element of String[] is different column.
      */
     protected ArrayList<String[]> dataArray;
     /**

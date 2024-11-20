@@ -53,7 +53,8 @@ public class MenuHumanResources extends Menu {
                 promotePrompt();
                 break;
 
-            case "PromoteTEST": // promote an employee
+            case "T": // promote an employee
+                System.out.println("LISTING PROMOTIONS....");
                 promotionsCSV.findPromotions();
                 break;
 
@@ -73,7 +74,7 @@ public class MenuHumanResources extends Menu {
             return;
         }
         // choose employee
-        System.out.println("Choose employee to promote.");
+        System.out.println("Choose employee to promote.\n-> ");
         promotionsCSV.printData();
         String userToPromote = in.nextLine().toUpperCase();
 
@@ -85,6 +86,6 @@ public class MenuHumanResources extends Menu {
         row[1] = "Yes";
 
         promotionsCSV.updateRow(userToPromote, 0, row);
-        System.out.println("Promoted " + userToPromote);
+        System.out.println("Promotion sent to " + userToPromote);
     }
 }
