@@ -16,25 +16,19 @@ public class CSVPayRoll extends CSV {
      * @param roleID
      * @param scale
      */
-    public void addToPayRoll(String userID, String roleID, String scale){   
+    public void addToPayRoll(String userID){   
         String row[] = employees.getRowOf(userID); 
         if(row == null){
             System.out.println("Invalid UserID");
             return;
         }
-        if(payScale.getRowOf(roleID) == null){
-            System.out.println("Invalid RoleID");
-            return;
-        }
-        if(payScale.getRowOf(scale, Integer.parseInt(scale) + 2) == null){
-            System.out.println("Invalid Scale Point");
-        }
         if(getRowOf(userID) != null){
             System.out.println("User already on PayRoll");
             return;
         }
-          
-        String[] addRow = {userID, roleID, scale, row[Integer.parseInt(scale)]};
+
+        String payRow[] = payScale.getRowOf(row[1]);
+        String[] addRow = {userID, row[1], row[2], payRow[Integer.parseInt(row[2]) + 2]};
         addRow(addRow);
     }
 }
