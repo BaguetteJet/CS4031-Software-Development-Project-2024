@@ -46,7 +46,7 @@ public class MenuEmployee extends Menu {
         System.out.printf("%s\n%s\n%s\n", pageBreak, lastMessage, pageBreak);
         lastMessage = defaultMessage;
 
-        if (fullTime && true) // and promotion
+        if (fullTime && promotions.getRowOf(UserID) != null) // and promotion
             optional = "A)ccept promotion   ";
         
         else if (!fullTime && payClaimsCSV.getRowOf(UserID) == null) // and form to fill in
@@ -62,6 +62,7 @@ public class MenuEmployee extends Menu {
         // choice
         switch (command) {
             case "V": // view details
+                details = employeesCSV.getRowOf(UserID);
                 if (fullTime) System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\nScale Point: %s\nSalary: %,d EUR\n", details[0], details[5], job[1], details[1], details[3], details[4], details[2], Integer.valueOf(job[Integer.valueOf(details[2]) + 1]));
                 else System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\n", details[0], details[5], job[1], details[1], details[3], details[4]);
                 break;
@@ -74,18 +75,16 @@ public class MenuEmployee extends Menu {
                 if (!optional.equals("A)ccept promotion   ")) // and promotion
                     break;
                 
-                String[] row = promotions.getRowOf(details[0]);
-                if(row == null)  { // and HR has sent promotion
-                    System.out.println("No promotion available.");
-                    return;
-                }
+                System.out.print("Accept promotion offer? (y/n)\n-> ");
+                String accept = in.nextLine().toUpperCase();
 
-                if(row[1].equals("False")) {
-                    System.out.println("No promotion available.");
-                    return;
+                if (accept.equals("Y")) {
+                    promotions.promoteEmployee(UserID); 
+                    System.out.println("Promotion accepted.");
+                } 
+                else {
+                    System.out.println("Promotion not accepted.");
                 }
-
-                promotions.promoteEmployee(details[0]);
                 break;
             
             case "F": // fill in pay claim

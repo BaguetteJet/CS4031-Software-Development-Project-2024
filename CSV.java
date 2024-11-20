@@ -134,6 +134,7 @@ public abstract class CSV {
                 String[] newRow = newData.get(j);
                 checkForEmpty(newRow);
                 for (int i = 0; i < newRow.length; i++) {
+                    // skip row if empty
                     if (!newRow[i].equals("")) {
                         bufferedWriter.write(newRow[i]);
                         if (i < newRow.length - 1) {
