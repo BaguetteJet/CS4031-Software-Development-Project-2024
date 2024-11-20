@@ -73,6 +73,19 @@ public class MenuEmployee extends Menu {
             case "A":
                 if (!optional.equals("A)ccept promotion   ")) // and promotion
                     break;
+                
+                String[] row = promotions.getRowOf(details[0]);
+                if(row == null)  { // and HR has sent promotion
+                    System.out.println("No promotion available.");
+                    return;
+                }
+
+                if(row[1].equals("False")) {
+                    System.out.println("No promotion available.");
+                    return;
+                }
+
+                promotions.promoteEmployee(details[0]);
                 break;
             
             case "F": // fill in pay claim

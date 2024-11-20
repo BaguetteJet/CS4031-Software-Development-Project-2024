@@ -47,7 +47,7 @@ public class CSVPayScale extends CSV {
      * @param roleID role ID of job
      * @return array of possible scale points
      */
-    private String[] findAvailableScalePoints(String roleID) {
+    public String[] findAvailableScalePoints(String roleID) {
         String[] row = getRowOf(roleID);
         // check if role exists
         if (row == null)  return null;
@@ -108,5 +108,12 @@ public class CSVPayScale extends CSV {
         if (row[Integer.valueOf(scalePoint) + 2].equals("null"))
             return false;
         return true;
+    }
+
+    public String getNextRole(String roleID){
+        String nextRole = Integer.toString(Integer.parseInt(roleID) + 1);
+        if(getRowOf(nextRole) != null)
+            return nextRole;
+        return null;
     }
 }

@@ -4,7 +4,7 @@ public class CSVPayRoll extends CSV {
 
     private CSVPayScale payScale;
     private CSVUsers users;
-    private ArrayList<String[]> usersCSV = users.getData(), payScaleCSV = payScale.getData();
+    private final ArrayList<String[]> usersCSV = users.getData(), payScaleCSV = payScale.getData();
     private int payIndex, index;
 
     public CSVPayRoll(String pathOfCSV) {

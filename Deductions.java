@@ -8,6 +8,9 @@ public class Deductions {
     private String[] row;
 
     public Deductions(String userID) {
+        employees = new CSVEmployees("data\\Employees.csv");
+        payScale = new CSVPayScale("data\\PayScale.csv");
+        
         this.row = employees.getRowOf(userID);
         this.scale = Integer.parseInt(row[2]);
         this.roleID = row[1];

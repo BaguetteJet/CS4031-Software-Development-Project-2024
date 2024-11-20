@@ -63,17 +63,24 @@ public class MenuHumanResources extends Menu {
     // promote an employee
     private void promotePrompt() {
         // list available for promotion
-        ArrayList<String> canPromote = null;
-        //if (canPromote.size() == 0)
-        //    return;
+        ArrayList<String[]> canPromote = promotions.getData();
+        if (canPromote.size() <= 1){
+            System.out.println("No available employees to promote");
+            return;
+        }
         // choose employee
-        System.out.println("Choose employee to promote.\nUserID: ");
+        System.out.println("Choose employee to promote.");
+        promotions.printData();
         String userToPromote = in.nextLine().toUpperCase();
-        //if (canPromote.contains(userToPromote)) {
 
-// ADD promote user function ! ! ! < - - - - 
+        String row[] = promotions.getRowOf(userToPromote);
+        if (row == null) {
+            System.out.println("Invalid UserID");
+            return;
+        }
+        row[1] = "True";
 
-            //System.out.println("Promoted " + userToPromote);
-        //}
+        promotions.updateRow(userToPromote, 0, row);
+        System.out.println("Promoted " + userToPromote);
     }
 }
