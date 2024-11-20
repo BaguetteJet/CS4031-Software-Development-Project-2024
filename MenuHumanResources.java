@@ -78,7 +78,7 @@ public class MenuHumanResources extends Menu {
             System.out.println("Invalid UserID");
             return;
         }
-        row[1] = "True";
+        row[1] = "Yes";
 
         promotions.updateRow(userToPromote, 0, row);
         System.out.println("Promoted " + userToPromote);

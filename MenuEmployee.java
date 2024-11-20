@@ -80,7 +80,7 @@ public class MenuEmployee extends Menu {
                     return;
                 }
 
-                if(row[1].equals("False")) {
+                if(row[1].equals("No")) {
                     System.out.println("No promotion available.");
                     return;
                 }
