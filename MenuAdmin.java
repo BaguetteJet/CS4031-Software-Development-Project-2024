@@ -1,8 +1,9 @@
 import java.util.Arrays;
+
 /**
  * Class to run the Admin menu of the system, extends Menu.
  * 
- * @author Igor Kochanski
+ * @author Igor Kochanski 100%
  * @version 1
  */
 public class MenuAdmin extends Menu {
@@ -10,7 +11,7 @@ public class MenuAdmin extends Menu {
     /**
      * Constructor.
      * 
-     * @param UserID ID of user
+     * @param UserID user ID
      */
     public MenuAdmin(String UserID) {
         this.UserID = UserID;
@@ -22,9 +23,10 @@ public class MenuAdmin extends Menu {
      */
     public void run() {
 
-        prefix = UserID + "> "; // message prefix
-        defaultMessage = prefix + "Admin Logged in"; // menu default message
+        prefix = UserID + "> ";
+        defaultMessage = prefix + "Admin Logged in";
         lastMessage = defaultMessage;
+
         // keep running menu
         while (more) {
             adminMenu();
@@ -163,16 +165,17 @@ public class MenuAdmin extends Menu {
             case "F":
                 typeOfEmployment = "Full-Time";
                 scalePoint = payScaleCSV.getCorrectScalePoint(roleID, startDate);
-                if (scalePoint == null) scalePoint = "null";
+                if (scalePoint == null)
+                    scalePoint = "null";
                 break;
 
             case "P":
                 typeOfEmployment = "Part-Time";
                 scalePoint = "null";
                 break;
-        
+
             default:
-            lastMessage = prefix + "! Invalid employment type.";
+                lastMessage = prefix + "! Invalid employment type.";
                 return null;
         }
 

@@ -1,11 +1,14 @@
 import java.util.Scanner;
-/** 
- * Abstract class of methods to operate menus.
- * @author Igor Kochanski
+
+/**
+ * Abstract class of methods to operate menus and their style.
+ * 
+ * @author Igor Kochanski 100%
  * @version 1
  */
+
 public abstract class Menu {
-    // Menu 
+    // Menu
     protected Scanner in;
     protected boolean more;
     protected String UserID;
@@ -30,8 +33,8 @@ public abstract class Menu {
     public Menu() {
         more = true;
         UserID = null;
-        defaultMessage = "     Welcome to UL Payroll System";
-        pageBreak = "--------------------------------------------";
+        defaultMessage = "        Welcome to UL Payroll System";
+        pageBreak = "------------------------------------------------";
         pageSpace = "\n";
         charRegex = "[0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$&+:;=?@#|'<>.^*()%!-]+";
 
@@ -40,11 +43,12 @@ public abstract class Menu {
         loadData();
     }
 
-    /** 
+    /**
      * Abstract method to run menu.
      */
     public abstract void run();
 
+    // Method to iniciate all csv file classes needed
     private void loadData() {
         usersCSV = new CSVUsers("data\\Users.csv");
         payScaleCSV = new CSVPayScale("data\\PayScale.csv");
