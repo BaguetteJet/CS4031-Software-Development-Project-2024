@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+
 /**
  * Class to run the Employee menu of the system, extends Menu.
  * 
- * @author Igor Kochanski
- * @version 1
+ * @author Igor Kochanski 85%
+ * @author Ciaran Whelan 15%
+ * @version 2
  */
 public class MenuHumanResources extends Menu {
 
-     /**
+    /**
      * Constructor.
      * 
-     * @param UserID ID of user
+     * @param UserID user ID
      */
     public MenuHumanResources(String UserID) {
         this.UserID = UserID;
@@ -22,8 +24,8 @@ public class MenuHumanResources extends Menu {
      */
     public void run() {
 
-        prefix = UserID + "> "; // message prefix
-        defaultMessage = prefix + "Human Resources Logged in"; // menu default message
+        prefix = UserID + "> ";
+        defaultMessage = prefix + "Human Resources Logged in";
         lastMessage = defaultMessage;
 
         // keep running menu
@@ -53,6 +55,11 @@ public class MenuHumanResources extends Menu {
                 promotePrompt();
                 break;
 
+            case "T": // generate possible promotions <--- [FOR TESTING PURPOSES]
+                System.out.println("LISTING PROMOTIONS....");
+                promotionsCSV.findPromotions();
+                break;
+
             case "Q": // quit back to main system menu
                 System.out.printf("%s\n   Logged Out\n%s\n", pageBreak, pageBreak);
                 more = false;
@@ -60,20 +67,36 @@ public class MenuHumanResources extends Menu {
         }
     }
 
-    // promote an employee
+    // Method to promote an employee
     private void promotePrompt() {
         // list available for promotion
-        ArrayList<String> canPromote = null;
-        //if (canPromote.size() == 0)
-        //    return;
+        ArrayList<String[]> canPromote = promotionsCSV.getData();
+
+        // check if promotions to dislay
+        if (canPromote.size() <= 1) {
+            System.out.println("No available employees to promote");
+            return;
+        }
+
+        // display possible candidates
+        promotionsCSV.printData();
+
         // choose employee
-        System.out.println("Choose employee to promote.\nUserID: ");
+        System.out.println("Choose employee to promote.\n-> ");
         String userToPromote = in.nextLine().toUpperCase();
-        //if (canPromote.contains(userToPromote)) {
+        String row[] = promotionsCSV.getRowOf(userToPromote);
 
-// ADD promote user function ! ! ! < - - - - 
+        // check if valid user ID
+        if (row == null) {
+            System.out.println("Invalid UserID");
+            return;
+        }
 
-            //System.out.println("Promoted " + userToPromote);
-        //}
+        // set promotion offer to get accepted by employee
+        row[1] = "Yes";
+
+        // update promotions
+        promotionsCSV.updateRow(userToPromote, 0, row);
+        System.out.println("Promotion sent to " + userToPromote);
     }
 }

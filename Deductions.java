@@ -8,6 +8,9 @@ public class Deductions {
     private String[] row;
 
     public Deductions(String userID) {
+        employees = new CSVEmployees("data\\Employees.csv");
+        payScale = new CSVPayScale("data\\PayScale.csv");
+        
         this.row = employees.getRowOf(userID);
         this.scale = Integer.parseInt(row[2]);
         this.roleID = row[1];
@@ -68,6 +71,7 @@ public class Deductions {
         }
     }
 
+    // luke what is the purpose of this?
     public void addPaySlip(String UserID, String FullName, String PPSN, String Position, String GrossPay, String PAYE, String PRSI, String USC, String NetPay, String Date) {
         String[] addRow = {UserID, FullName, PPSN, Position, GrossPay, PAYE, PRSI, USC, NetPay, Date};
         for (String x : addRow) {

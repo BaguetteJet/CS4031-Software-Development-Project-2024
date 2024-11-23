@@ -1,7 +1,7 @@
 /**
  * Main class to run the UL Payroll System
  * @author Igor Kochanski - 23358459
- * @author Ciaran Whelan - 
+ * @author Ciaran Whelan - 23370211
  * @author Luke Scanlon - 
  */
 public class RunSystem {
