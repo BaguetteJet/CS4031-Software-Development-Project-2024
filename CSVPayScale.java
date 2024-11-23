@@ -56,7 +56,7 @@ public class CSVPayScale extends CSV {
     }
 
     /**
-     * Method to find scale points available for a role role
+     * Method to find scale points available for a role 
      * 
      * @param roleID role ID
      * @return array of possible scale points, else null
