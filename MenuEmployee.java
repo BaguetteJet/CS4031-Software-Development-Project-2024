@@ -1,7 +1,7 @@
 /**
  * Class to run the Employee menu of the system, extends Menu.
  * 
- * @author Igor Kochanski
+ * @author Igor Kochanski 100%
  * @version 2
  */
 public class MenuEmployee extends Menu {

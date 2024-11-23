@@ -17,7 +17,6 @@ public class CSVPromotions extends CSV {
         if (getData().size() > 1) clearData();
 
         String[] promotable = new String[2];
-        System.out.println("HELLO");
         for (String[] row : employees.getData()) {
             if (employees.isFullTime(row) && (payScale.canProgress(row[1], row[2]) || payScale.getNextRole(row[1]) != null)) {
                 promotable[0] = row[0];

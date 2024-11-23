@@ -48,7 +48,7 @@ public abstract class Menu {
      */
     public abstract void run();
 
-    // Method to iniciate all csv file classes needed
+    // Method to initiate all csv file classes needed
     private void loadData() {
         usersCSV = new CSVUsers("data\\Users.csv");
         payScaleCSV = new CSVPayScale("data\\PayScale.csv");

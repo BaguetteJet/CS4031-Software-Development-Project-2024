@@ -139,7 +139,7 @@ public class CSVPayScale extends CSV {
     /**
      * Method to check if an employee can progress on scale point
      * 
-     * @param roleID     role ID
+     * @param roleID role ID
      * @param scalePoint scale point
      * @return true if employee promotable, else false
      */

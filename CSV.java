@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * Abstract class of methods to operate reading and writing data to and from CSV
  * file.
  * 
- * @author Igor Kochanski 95%
- * @author Ciaran Whelan 5%
+ * @author Igor Kochanski 90%
+ * @author Ciaran Whelan 10%
  * @version 5
  */
 public abstract class CSV {
