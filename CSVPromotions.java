@@ -43,7 +43,8 @@ public class CSVPromotions extends CSV {
                 // default is no until updated by HR
                 promotable[1] = "No";
                 addRow(promotable);
-            } else if(employeesCSV.isFullTime(row) && payScaleCSV.canProgress(row[1], row[2])) {
+            // if cant progress check if they can go further up the scale
+            } else if (employeesCSV.isFullTime(row) && payScaleCSV.canProgress(row[1], row[2])) {
                 row[2] = Integer.toString(Integer.parseInt(row[2]) + 1);
 
                 //Updates the data in Employees.csv & PayRoll.csv with new scale
