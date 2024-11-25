@@ -62,12 +62,9 @@ public class CSVPayRoll extends CSV {
         for(String[] row : employeesCSV.getData()){
             payRow = payScaleCSV.getRowOf(row[1]);
 
-            // checks if their PartTime or FullTime and adds their data
-            if(employeesCSV.isFullTime(row[0])){
-                addRow = new String[]{row[0], row[1], row[2], payRow[Integer.parseInt(row[2]) + 2]};
-            } else {
-                addRow = new String[]{row[0], row[1], "null", "null"};
-            }
+            // adds their data
+            addRow = new String[]{row[0], row[1], row[2], payRow[Integer.parseInt(row[2]) + 2]};
+    
             addRow(addRow);
         }
     }
