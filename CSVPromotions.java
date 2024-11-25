@@ -27,7 +27,7 @@ public class CSVPromotions extends CSV {
     }
 
     /**
-     * Method to find all the employees that are promotable
+     * Method to find all the employees that are promotable or progress the payScale
      */
     public void findPromotionsAndUpdateScale(){
         // clears the promotions from the last year
