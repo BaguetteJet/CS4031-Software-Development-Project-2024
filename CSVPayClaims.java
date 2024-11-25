@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Class to operate PaySlips.csv file data, extends CSV class.
  * All pay claims are saved here.
@@ -26,5 +28,15 @@ public class CSVPayClaims extends CSV {
     public void addClaim(String UserID, String Hours) {
         String[] newRow = { UserID, Hours };
         addRow(newRow);
+    }
+
+    public ArrayList<String[]> getClaimsForUser(String userID) {
+        ArrayList<String[]> userClaims = new ArrayList<>();
+        for (String[] row : getData()) {
+            if (row[0].equals(userID)) {
+                userClaims.add(row);
+            }
+        }
+        return userClaims;
     }
 }
