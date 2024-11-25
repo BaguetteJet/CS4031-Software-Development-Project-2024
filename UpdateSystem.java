@@ -25,14 +25,23 @@ public class UpdateSystem{
     Deductions taxes = new Deductions();
     
     /**
-     * Initialising the current date based on the systems date
+     * Initialising the date for system to run on.
      */
-    private LocalDate today = LocalDate.now();
+    private LocalDate today;
     
     /**
-     * Constructs an instance of UpdateSystem
+     * Constructs an instance of UpdateSystem to run on a particular date, else system date.
+     * 
+     * @param dateEntered date to run system on (yyyy-MM-dd), else system date will be used
      */
-    public UpdateSystem() {}
+    public UpdateSystem(String dateEntered) {
+        if (!dateEntered.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            this.today = LocalDate.now();
+        }
+        else {
+            this.today = LocalDate.parse(dateEntered);
+        }
+    }
 
     /**
      * Runs the system updates based on specific conditions and dates.
@@ -92,6 +101,8 @@ public class UpdateSystem{
 
         }
     }
+
+    
 
     /**
      * Checks if the current date is the 25th of the month.

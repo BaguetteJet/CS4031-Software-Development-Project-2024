@@ -10,9 +10,7 @@ public class RunSystem {
      * @param args
      */
     public static void main(String[] args) {
-        UpdateSystem updateSystem = new UpdateSystem();
         MenuLogin loginMenu = new MenuLogin();
-        updateSystem.updateAll();
         loginMenu.run();
     }
 }

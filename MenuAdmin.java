@@ -171,7 +171,7 @@ public class MenuAdmin extends Menu {
 
             case "P":
                 typeOfEmployment = "Part-Time";
-                scalePoint = "null";
+                scalePoint = "1";
                 break;
 
             default:
