@@ -54,25 +54,10 @@ public class CSVPromotions extends CSV {
     public void promoteEmployee(String userID){
         String row[] = employeesCSV.getRowOf(userID),
                payRow[] = payScaleCSV.getRowOf(row[1]),
-               empty[] = new String[]{"", ""};
-
-        // checks if they can go further up the scale 
-        if(payScaleCSV.canProgress(row[1], row[2])){
-            row[2] = Integer.toString(Integer.parseInt(row[2]) + 1);
-
-            // Removes them from Promotions.csv
-            updateRow(userID, 0, empty);
-
-            //Updates the data in Employees.csv & PayRoll.csv with new scale
-            employeesCSV.updateRow(row[0], 0, row);
-
-            String newRow[] = {userID, row[1], row[2], payRow[Integer.parseInt(row[2])]};
-            payRollCSV.updateRow(userID, 0, newRow);
-            return;
-        }
+               empty[] = new String[]{"", ""}; 
 
         // checks if there is a further role that they can pursue
-        if(payScaleCSV.getNextRole(row[1]) != null){
+        if(!payScaleCSV.canProgress(row[1], row[2]) && payScaleCSV.getNextRole(row[1]) != null){
             row[1] = payScaleCSV.getNextRole(row[1]);
             row[2] = payScaleCSV.findAvailableScalePoints(row[1])[0];
 
@@ -89,5 +74,26 @@ public class CSVPromotions extends CSV {
 
         // debugging statement to check for fails in findPromotions
         System.out.println("User is unable to be promoted");
+    }
+
+    /**
+     * Method that updates the employees payScale
+     * 
+     * @param userID userID
+     */
+    public void updatePayScale(String userID){
+        String row[] = employeesCSV.getRowOf(userID),
+                payRow[] = payScaleCSV.getRowOf(row[1]);
+
+        // check if Employee can go further up the Payscale
+        if (payScaleCSV.canProgress(row[1], row[2])) {
+            row[2] = Integer.toString(Integer.parseInt(row[2]) + 1);
+
+            //Updates the data in Employees.csv & PayRoll.csv with new scale
+            employeesCSV.updateRow(row[0], 0, row);
+
+            String newRow[] = {userID, row[1], row[2], payRow[Integer.parseInt(row[2])]};
+            payRollCSV.updateRow(userID, 0, newRow);
+        }
     }
 }
