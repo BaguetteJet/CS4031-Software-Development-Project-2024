@@ -57,7 +57,7 @@ public class MenuHumanResources extends Menu {
 
             case "T": // generate possible promotions <--- [FOR TESTING PURPOSES]
                 System.out.println("LISTING PROMOTIONS....");
-                promotionsCSV.findPromotions();
+                promotionsCSV.findPromotionsAndUpdateScale();
                 break;
 
             case "Q": // quit back to main system menu
