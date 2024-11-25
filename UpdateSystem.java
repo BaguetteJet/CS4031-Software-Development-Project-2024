@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * based on specific calendar dates and conditions.
  * These updates include payroll generation, clearing claims, and scale updates.
  * @author Luke Scanlon
- * @version 2
+ * @version 3
  */
 
 public class UpdateSystem{
@@ -31,11 +31,7 @@ public class UpdateSystem{
     /**
      * Constructs an instance of UpdateSystem
      */
-    public UpdateSystem() {
-       
-
-        
-    }
+    public UpdateSystem() {}
 
     /**
      * Runs the system updates based on specific conditions and dates.
@@ -65,18 +61,34 @@ public class UpdateSystem{
         }
 
         if (checkTwentyFifth() == true) {
-            ArrayList<String[]> data = payRoll.getData();
-            ArrayList<String[]> employeesData = employees.getData();
-        
-            // Loop through all employees
-            for (String[] employee : employeesData) {
-                String userID = employee[0]; // Assuming userID is in the first column of Employees.csv
-        
-                // Check if the userID is already in the payroll (this is done once per employee)
-                if (isUserInPayRoll(userID)) {
-                    addEmployeeToPaySlip(userID);
+            if (runs <= 1) {
+                ArrayList<String[]> employeesData = employees.getData();
+            
+                // Loop through all employees
+                for (String[] employee : employeesData) {
+                    String userID = employee[0]; // Assuming userID is in the first column of Employees.csv
+            
+                    // Check if the userID is already in the payroll (this is done once per employee)
+                    if (isUserInPayRoll(userID)) {
+                        addEmployeeToPaySlip(userID);
+                    }
+                }
+            }    
+        }
+
+        if (checkFirstOctober() == true) {
+            if (runs <= 1) {
+                ArrayList<String[]> employeesData = employees.getData();
+
+                for (String[] employee : employeesData) {
+                    String roleID = employee[1];
+                    String startDate = employee[5];
+                    String newPointScale = payScale.getCorrectScalePoint(roleID, startDate);
+                    String[] updatedRow = {employee[0], roleID, newPointScale, employee[3], startDate, employee[5], employee[6]};
+                    employees.updateRow(newPointScale, 2, updatedRow);
                 }
             }
+
         }
     }
 
