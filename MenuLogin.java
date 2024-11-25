@@ -21,6 +21,12 @@ public class MenuLogin extends Menu {
       usersCSV.printData(); // display all logins <--- [FOR TESTING PURPOSES]
       lastMessage = defaultMessage;
 
+      System.out.print("Enter Date (yyyy-MM-dd): ");
+      String dateEntered = in.nextLine();
+
+      UpdateSystem updateSystem = new UpdateSystem(dateEntered);
+      updateSystem.updateAll();
+
       // keep running menu
       while (more) {
          mainMenu();
