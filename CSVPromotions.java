@@ -29,19 +29,28 @@ public class CSVPromotions extends CSV {
     /**
      * Method to find all the employees that are promotable
      */
-    public void findPromotions(){
+    public void findPromotionsAndUpdateScale(){
         // clears the promotions from the last year
         if (getData().size() > 1) clearData();
 
         String[] promotable = new String[2];
         // runs through all employees
         for (String[] row : employeesCSV.getData()) {
-            // check if they are Fulltime & that they can either progress or have another role that is avaialable for them
-            if (employeesCSV.isFullTime(row) && (payScaleCSV.canProgress(row[1], row[2]) || payScaleCSV.getNextRole(row[1]) != null)) {
+            String payRow[] = payScaleCSV.getRowOf(row[1]);
+            // check if they are Fulltime & have another role that is avaialable for them
+            if (employeesCSV.isFullTime(row) && !payScaleCSV.canProgress(row[1], row[2]) && payScaleCSV.getNextRole(row[1]) != null) {
                 promotable[0] = row[0];
                 // default is no until updated by HR
                 promotable[1] = "No";
                 addRow(promotable);
+            } else if(employeesCSV.isFullTime(row) && payScaleCSV.canProgress(row[1], row[2])) {
+                row[2] = Integer.toString(Integer.parseInt(row[2]) + 1);
+
+                //Updates the data in Employees.csv & PayRoll.csv with new scale
+                employeesCSV.updateRow(row[0], 0, row);
+
+                String newRow[] = {row[0], row[1], row[2], payRow[Integer.parseInt(row[2])]};
+                payRollCSV.updateRow(row[0], 0, newRow);
             }
         }
     }
@@ -74,26 +83,5 @@ public class CSVPromotions extends CSV {
 
         // debugging statement to check for fails in findPromotions
         System.out.println("User is unable to be promoted");
-    }
-
-    /**
-     * Method that updates the employees payScale
-     * 
-     * @param userID userID
-     */
-    public void updatePayScale(String userID){
-        String row[] = employeesCSV.getRowOf(userID),
-                payRow[] = payScaleCSV.getRowOf(row[1]);
-
-        // check if Employee can go further up the Payscale
-        if (payScaleCSV.canProgress(row[1], row[2])) {
-            row[2] = Integer.toString(Integer.parseInt(row[2]) + 1);
-
-            //Updates the data in Employees.csv & PayRoll.csv with new scale
-            employeesCSV.updateRow(row[0], 0, row);
-
-            String newRow[] = {userID, row[1], row[2], payRow[Integer.parseInt(row[2])]};
-            payRollCSV.updateRow(userID, 0, newRow);
-        }
     }
 }
