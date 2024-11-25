@@ -4,7 +4,8 @@ import java.util.ArrayList;
  * Class to operate PaySlips.csv file data, extends CSV class.
  * All pay claims are saved here.
  * 
- * @author Igor Kochanski 100%
+ * @author Igor Kochanski 90%
+ * @author Luke Scanlon 10%
  * @version 1
  */
 public class CSVPayClaims extends CSV {

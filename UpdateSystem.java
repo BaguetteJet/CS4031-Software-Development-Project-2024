@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * The UpdateSystem class manages and triggers scheduled updates
  * based on specific calendar dates and conditions.
  * These updates include payroll generation, clearing claims, and scale updates.
- * @author Luke Scanlon
+ * @author Luke Scanlon 90%
+ * @author Igor Kochanski 10%
  * @version 3
  */
 
@@ -21,7 +22,7 @@ public class UpdateSystem{
     CSVEmployees employees = new CSVEmployees("data\\Employees,csv");
     CSVPayRoll payRoll = new CSVPayRoll("data\\PayRoll.csv");
     CSVSystemChecker systemChecker = new CSVSystemChecker("data\\SystemChecks.csv");
-    Deductions taxes = new Deductions(userID);
+    Deductions taxes = new Deductions();
     
     /**
      * Initialising the current date based on the systems date
