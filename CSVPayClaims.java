@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * 
  * @author Igor Kochanski 90%
  * @author Luke Scanlon 10%
- * @version 1
+ * @version 2
  */
 public class CSVPayClaims extends CSV {
 
@@ -31,6 +31,12 @@ public class CSVPayClaims extends CSV {
         addRow(newRow);
     }
 
+    /**
+     * Method to check if a Part-Time employee has made a payclaim.
+     * 
+     * @param userID
+     * @return userID if they are in the PayClaims.csv file 
+     */
     public ArrayList<String[]> getClaimsForUser(String userID) {
         ArrayList<String[]> userClaims = new ArrayList<>();
         for (String[] row : getData()) {

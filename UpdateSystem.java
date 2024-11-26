@@ -10,191 +10,159 @@ import java.util.ArrayList;
  * 
  * @author Luke Scanlon 90%
  * @author Igor Kochanski 10%
- * @version 3
+ * @version 4
  */
 
 public class UpdateSystem {
+ // CSV file managers for handling system data
+ CSVPayScale payScale = new CSVPayScale("data\\PayScale.csv");
+ CSVPayClaims payClaim = new CSVPayClaims("data\\PayClaims.csv");
+ CSVPaySlips paySlip = new CSVPaySlips("data\\PaySlips.csv");
+ CSVEmployees employees = new CSVEmployees("data\\Employees.csv");
+ CSVPayRoll payRoll = new CSVPayRoll("data\\PayRoll.csv");
+ CSVPromotions promotions = new CSVPromotions("data\\Promotions.csv");
+ CSVSystemChecker systemChecker = new CSVSystemChecker("data\\SystemChecks.csv");
+ Deductions taxes = new Deductions();
 
-    private String userID;
+ // Current date
+ private LocalDate today;
 
-    CSVPayScale payScale = new CSVPayScale("data\\PayScale.csv");
-    CSVPayClaims payClaim = new CSVPayClaims("data\\PayClaims.csv");
-    CSVPaySlips paySlip = new CSVPaySlips("data\\PaySlips.csv");
-    CSVEmployees employees = new CSVEmployees("data\\Employees.csv");
-    CSVPayRoll payRoll = new CSVPayRoll("data\\PayRoll.csv");
-    CSVSystemChecker systemChecker = new CSVSystemChecker("data\\SystemChecks.csv");
-    //Deductions taxes = new Deductions(userID);
+ /**
+  * Constructs an UpdateSystem instance with a specified date.
+  * If the date format is invalid, the current system date is used instead.
+  * 
+  * @param dateEntered The date provided by the user in "yyyy-MM-dd" format.
+  */
+ public UpdateSystem(String dateEntered) {
+     if (!dateEntered.matches("\\d{4}-\\d{2}-\\d{2}")) {
+         this.today = LocalDate.now();
+     } else {
+         this.today = LocalDate.parse(dateEntered);
+     }
+ }
 
-    /**
-     * Initialising the date for system to run on.
-     */
-    private LocalDate today;
+ /**
+  * Triggers all scheduled updates based on the current date and run count.
+  * 
+  * Operations include:
+  * - Clearing pay claims on the second Friday of each month.
+  * - Generating payslips on the 25th of each month.
+  * - Promoting employees on October 1st.
+  */
+ public void updateAll() {
+     systemChecker.updateDateAndRunCounter();
+     systemChecker.incrementRunCounter();
+     int runs = systemChecker.getRunCounter();
 
-    /**
-     * Constructs an instance of UpdateSystem to run on a particular date, else
-     * system date.
-     * 
-     * @param dateEntered date to run system on (yyyy-MM-dd), else system date will
-     *                    be used
-     */
-    public UpdateSystem(String dateEntered) {
-        if (!dateEntered.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            this.today = LocalDate.now();
-        } else {
-            this.today = LocalDate.parse(dateEntered);
-        }
-    }
+     if (checkSecondFriday() && runs <= 1) {
+         for (String[] employee : employees.getData()) {
+             String userID = employee[0];
+             addEmployeeToSystem(userID);
+         }
+         payClaim.clearData();
+     }
 
-    /**
-     * Runs the system updates based on specific conditions and dates.
-     * The updates include:
-     * - Generating payslips on the 25th of the month.
-     * - Generating payroll on the second Friday of the month.
-     * - Clearing pay claims on the second Saturday of the month.
-     * - Updating employee scale points on the 1st of October.
-     * 
-     * This method also tracks execution runs using external CSV files to
-     * ensure updates do not run more than once per day.
-     */
-    public void updateAll() {
+     if (checkTwentyFifth() && runs <= 1) {
+         ArrayList<String[]> employeesData = employees.getData();
 
-        systemChecker.updateDateAndRunCounter();
-        systemChecker.incrementRunCounter();
-        int runs = systemChecker.getRunCounter();
+         for (String[] employee : employeesData) {
+             String userID = employee[0];
+             if (isUserInPayRoll(userID)) {
+                 addEmployeeToPaySlip(userID);
+             }
+         }
+     }
 
-        if (checkSecondFriday() == true) {
-            if (runs <= 1) {
-                for (String[] employee : employees.getData()) {
-                    String userID = employee[0];
-                    addEmployeeToSystem(userID);
-                }
-                payClaim.clearData();
-            }
-        }
+     if (checkFirstOctober() && runs <= 1) {
+         promotions.findPromotionsAndUpdateScale();
+     }
+ }
 
-        if (checkTwentyFifth() == true) {
-            if (runs <= 1) {
-                ArrayList<String[]> employeesData = employees.getData();
+ /**
+  * Checks if the current date is the 25th of the month.
+  * 
+  * @return true if today is the 25th, false otherwise.
+  */
+ private boolean checkTwentyFifth() {
+     return today.getDayOfMonth() == 25;
+ }
 
-                // Loop through all employees
-                for (String[] employee : employeesData) {
-                    String userID = employee[0]; // Assuming userID is in the first column of Employees.csv
+ /**
+  * Checks if the current date is the second Friday of the month.
+  * 
+  * @return true if today is the second Friday, false otherwise.
+  */
+ private boolean checkSecondFriday() {
+     if (today.getDayOfWeek() != DayOfWeek.FRIDAY) {
+         return false;
+     }
+     LocalDate firstFriday = today.withDayOfMonth(1);
+     while (firstFriday.getDayOfWeek() != DayOfWeek.FRIDAY) {
+         firstFriday = firstFriday.plusDays(1);
+     }
+     LocalDate secondFriday = firstFriday.plusDays(7);
+     return today.equals(secondFriday);
+ }
 
-                    // Check if the userID is already in the payroll (this is done once per
-                    // employee)
-                    if (isUserInPayRoll(userID)) {
-                        addEmployeeToPaySlip(userID);
-                    }
-                }
-            }
-        }
+ /**
+  * Checks if the current date is October 1st.
+  * 
+  * @return true if today is October 1st, false otherwise.
+  */
+ private boolean checkFirstOctober() {
+     return today.getMonth() == Month.OCTOBER && today.getDayOfMonth() == 1;
+ }
 
-        if (checkFirstOctober() == true) {
-            if (runs <= 1) {
-                ArrayList<String[]> employeesData = employees.getData();
+ /**
+  * Adds an employee to the payroll system.
+  * 
+  * - Full-time employees are always added.
+  * - Part-time employees are added only if they have pay claims.
+  * 
+  * @param userID The user ID of the employee to add.
+  */
+ public void addEmployeeToSystem(String userID) {
+     if (employees.isFullTime(userID)) {
+         payRoll.addToPayRoll(userID);
+     } else if (hasPayClaim(userID)) {
+         payRoll.addToPayRoll(userID);
+     }
+ }
 
-                for (String[] employee : employeesData) {
-                    String roleID = employee[1];
-                    String startDate = employee[5];
-                    String newPointScale = payScale.getCorrectScalePoint(roleID, startDate);
-                    String[] updatedRow = { employee[0], roleID, newPointScale, employee[3], startDate, employee[5],
-                            employee[6] };
-                    employees.updateRow(newPointScale, 2, updatedRow);
-                }
-            }
+ /**
+  * Checks if a part-time employee has any pay claims.
+  * 
+  * @param userID The user ID of the employee to check.
+  * @return true if the employee has a pay claim, false otherwise.
+  */
+ private boolean hasPayClaim(String userID) {
+     return !payClaim.getClaimsForUser(userID).isEmpty();
+ }
 
-        }
-    }
+ /**
+  * Adds an employee's payslip to the system based on their payroll data.
+  * 
+  * @param userID The user ID of the employee.
+  */
+ private void addEmployeeToPaySlip(String userID) {
+     if (payRoll.getRowOf(userID) != null) {
+         taxes.loadSalary(userID);
+         String[] employeeRow = employees.getRowOf(userID);
+         String roleID = employeeRow[1];
+         String[] payScaleRow = payScale.getRowOf(roleID);
+         paySlip.addPaySlip(userID, payScaleRow[1], String.valueOf(taxes.getGrossMonthly()),
+                 String.valueOf(taxes.getPAYE()), String.valueOf(taxes.getPRSI()), String.valueOf(taxes.getUSC()),
+                 String.valueOf(taxes.getNetPay()), today.toString());
+     }
+ }
 
-    /**
-     * Checks if the current date is the 25th of the month.
-     * 
-     * @return true if today is the 25th, false otherwise.
-     */
-    private boolean checkTwentyFifth() {
-        if (today.getDayOfMonth() == 25) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the current date is the second Friday of the month.
-     * 
-     * @return true if today is the second Friday, false otherwise.
-     */
-    private boolean checkSecondFriday() {
-        if (today.getDayOfWeek() != DayOfWeek.FRIDAY) {
-            return false;
-        }
-        LocalDate dayOfMonth = today.withDayOfMonth(1);
-        while (dayOfMonth.getDayOfWeek() != DayOfWeek.FRIDAY) {
-            dayOfMonth.plusDays(1);
-        }
-        dayOfMonth.plusDays(7);
-        if (today.equals(dayOfMonth)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the current date is the 1st of October.
-     * 
-     * @return true if today is October 1st, false otherwise.
-     */
-    private boolean checkFirstOctober() {
-        if (today.getMonth() != Month.OCTOBER) {
-            return false;
-        } else {
-            if (today.getDayOfMonth() == 1) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    public void addEmployeeToSystem(String userID) {
-
-        // Full-time employee: Add directly to PayRoll
-        if (employees.isFullTime(userID)) {
-            payRoll.addToPayRoll(userID);
-        }
-        // Part-time employee: Add only if they have a PayClaim
-        else if (hasPayClaim(userID)) {
-            payRoll.addToPayRoll(userID);
-
-        }
-    }
-
-    /**
-     * Check if a part-time employee has any pay claims.
-     * 
-     * @param userID the user ID of the part-time employee
-     * @return true if the employee has a pay claim, false otherwise
-     */
-    private boolean hasPayClaim(String userID) {
-        return !payClaim.getClaimsForUser(userID).isEmpty();
-    }
-
-    private void addEmployeeToPaySlip(String userID) {
-
-        if (payRoll.getRowOf(userID) != null) {
-            String[] employeeRow = employees.getRowOf(userID);
-            String roleID = employeeRow[1];
-            String[] payScaleRow = payScale.getRowOf(roleID);
-           // paySlip.addPaySlip(userID, payScaleRow[1], String.valueOf(taxes.getGrossMonthly()),
-                    //String.valueOf(taxes.getPAYE()), String.valueOf(taxes.getPRSI_EE()), String.valueOf(taxes.getUSC()),
-                    //String.valueOf(taxes.getNetPay()), today.toString());
-        }
-    }
-
-    public boolean isUserInPayRoll(String userID) {
-        // Check if the userID exists in the PayRoll CSV
-        String[] payRollRow = payRoll.getRowOf(userID);
-
-        // If row is not null, the userID exists in PayRoll.csv
-        return payRollRow != null;
-    }
+ /**
+  * Checks if an employee is in the payroll system.
+  * 
+  * @param userID The user ID of the employee to check.
+  * @return true if the employee is in the payroll system, false otherwise.
+  */
+ public boolean isUserInPayRoll(String userID) {
+     return payRoll.getRowOf(userID) != null;
+ }
 }

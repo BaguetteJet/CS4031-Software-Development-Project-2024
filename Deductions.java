@@ -1,27 +1,65 @@
+/**
+ *.Deductions class to calulate all deductions from an employees salary.
+
+ @author Luke Scanlon 100%
+ @version 4.
+ */
 public class Deductions {
-
-    private CSVPayScale payScale;
     private CSVEmployees employees;
-    private final String roleID;
-    private final double salary;
-    private final int scale;
-    private String[] row;
+    private CSVPayScale payScales;
+    private CSVPayClaims payClaims;
+    private double salary;
 
-    public Deductions(String userID) {
+    
+    /**
+     * Constructor.
+     * calls an instance of:
+     * CSVEmployees.
+     * CSVPayScale.
+     * CSVPayClaims.
+     */
+    public Deductions() {
         employees = new CSVEmployees("data\\Employees.csv");
-        payScale = new CSVPayScale("data\\PayScale.csv");
+        payScales = new CSVPayScale("data\\PayScale.csv");
+        payClaims = new CSVPayClaims("data\\PayClaims.csv");
         
-        this.row = employees.getRowOf(userID);
-        this.scale = Integer.parseInt(row[2]);
-        this.roleID = row[1];
-        this.salary = Double.parseDouble(payScale.salaryAtScalePoint(roleID, scale));
     }
 
+    /**
+     * Method to load the salary into the deductions for calculations
+     * 
+     * @param userID
+     */
+    public void loadSalary(String userID) {
+        String[] row = employees.getRowOf(userID);
+        if (row == null) {
+            throw new IllegalArgumentException("Employee not found");
+        }
+        String roleID = row[1];
+        int payScale = Integer.valueOf(row[2]);
+        String[] payRow = payScales.getRowOf(roleID);
+
+        if (isFullTime(userID)) {
+            this.salary = Double.parseDouble(payRow[payScale + 1]) / 12;
+        } else {
+            this.salary = ((Double.parseDouble(payRow[payScale + 1]) / 52) / 40) * hoursWorked(userID);
+        }
+    }
+
+    /**
+     * Method to get the monthly salary.
+     * 
+     * @return salary.
+     */
     public double getGrossMonthly() {
-        return salary / 12;
+        return salary;
     }
 
-    //Calculate PAYE on salary
+    /**
+     * Method to calculate PAYE(Pay As You Earn) deduction.
+     * 
+     * @return Amount of PAYE.
+     */
     public double getPAYE() {
         double MonthlyEarnings = getGrossMonthly();
         if (MonthlyEarnings <= 3500) {
@@ -32,9 +70,13 @@ public class Deductions {
             return (highRateSalary * 0.4) + tax;
         }
     }
-
-    // Calculate PRSI paid by employee
-    public double getPRSI_EE() {
+    
+    /**
+     * Method to calculate PRSI(Pay Related Social Insurance) deduction.
+     * 
+     * @return Amount of PRSI.
+     */
+    public double getPRSI() {
         double monthlyEarnings = salary / 52;
         int creditPRSI = 12;
         if (monthlyEarnings < 352) {
@@ -50,19 +92,12 @@ public class Deductions {
             return ((monthlyEarnings * 0.041) * 52) / 12;
         }
     }
-
-    //Calculate PRSI paid by employer
-    public double getPRSI_ER() {
-        double monthlyEarnings = salary /52;
-        if (monthlyEarnings <= 38) {
-            return 0;
-        } else if (monthlyEarnings <= 496) {
-            return (monthlyEarnings * 0.089) * 12;
-        } else {
-            return (monthlyEarnings * 0.1115) * 12;
-        }
-    }
-    //Calculates USC on Salary
+    
+    /**
+     * Method to calculate USC(Universal Social Charge) deduction.
+     * 
+     * @return Amount of USC.
+     */
     public double getUSC() {
         if (salary <= 13000) {
             return 0;
@@ -70,12 +105,48 @@ public class Deductions {
             return (salary * 0.04) /12;
         }
     }
-
+    
+    /**
+     * Method to calculate the total deductions.
+     * 
+     * @return Amount of PAYE.
+     */
     private double getTotalDeductions() {
-        return getPAYE() + getPRSI_EE() + getUSC();
+        return getPAYE() + getPRSI() + getUSC();
     }
 
+    /**
+     * Method to calculate the Net pay.
+     * 
+     * @return NetPay.
+     */
     public double getNetPay() {
         return getGrossMonthly() - getTotalDeductions();
     }
+
+    /**
+     * Method to check if an employ is full-Time or Part-Time.
+     * 
+     * @param userID
+     * @return True or False.
+     */
+    private boolean isFullTime(String userID) {
+        String[] row = employees.getRowOf(userID);
+        String type = row[3];
+        if (type == "Full-Time") {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Method to get the hours worked from the PayClaims.csv file.
+     * @param userID
+     * @return Hours worked.
+     */
+    private double hoursWorked(String userID) {
+        String[] row = payClaims.getRowOf(userID);
+        return Double.parseDouble(row[1]);
+    }
+    
 }
