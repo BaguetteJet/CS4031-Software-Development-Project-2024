@@ -46,7 +46,7 @@ public class CSVPayRoll extends CSV {
         }
 
         String payRow[] = payScaleCSV.getRowOf(row[1]);
-        String[] addRow = {userID, row[1], row[2], payRow[Integer.parseInt(row[2]) + 2]};
+        String[] addRow = {userID, row[1], row[2], payRow[Integer.parseInt(row[2]) + 1]};
         addRow(addRow);
     }
     
@@ -60,12 +60,16 @@ public class CSVPayRoll extends CSV {
         String addRow[], payRow[];
         // runs through the list of employees
         for(String[] row : employeesCSV.getData()){
-            payRow = payScaleCSV.getRowOf(row[1]);
+            // checks that its not the header
+            if(!row[0].equals("UserID"))
+            {
+                payRow = payScaleCSV.getRowOf(row[1]);
 
-            // adds their data
-            addRow = new String[]{row[0], row[1], row[2], payRow[Integer.parseInt(row[2]) + 2]};
-    
-            addRow(addRow);
+                // adds their data
+                addRow = new String[]{row[0], row[1], row[2], payRow[Integer.parseInt(row[2]) + 1]};
+
+                addRow(addRow);
+            } 
         }
     }
 }

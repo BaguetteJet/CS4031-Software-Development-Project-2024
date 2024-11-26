@@ -31,7 +31,8 @@ public class CSVPromotions extends CSV {
      */
     public void findPromotionsAndUpdateScale(){
         // clears the promotions from the last year
-        if (getData().size() > 1) clearData();
+        if (getData().size() > 1) 
+            clearData();
 
         String[] promotable = new String[2];
         // runs through all employees
