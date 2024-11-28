@@ -1,5 +1,8 @@
 TO DO LIST:
 
+EVERYTHING IS DONE 
+DONE DONE DONE EVEN LUKE'S PARTS
+
 - promotions
   - update role IDs | DONE
   - checks for update LUKE
