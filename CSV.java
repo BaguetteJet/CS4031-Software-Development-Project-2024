@@ -179,7 +179,7 @@ public abstract class CSV {
     }
 
     /**
-     * Method to clear csv file data leaving the first row
+     * Method to clear csv file data leaving the first row.
      */
     protected void clearData() {
         // save only the column names
@@ -237,7 +237,7 @@ public abstract class CSV {
     }
 
     /**
-     * Method to get row of matching first column value
+     * Method to get row of matching first column value.
      * 
      * @param value value to find in column 0
      * @return row found, else null
@@ -247,7 +247,7 @@ public abstract class CSV {
     }
 
     /**
-     * Method to get row of matching column value
+     * Method to get row of matching column value.
      * 
      * @param value  value to find
      * @param column column to search
@@ -271,7 +271,7 @@ public abstract class CSV {
     }
 
     /**
-     * Method to get the index of a row
+     * Method to get the index of a row.
      *
      * @param value  value to find
      * @param column column to search

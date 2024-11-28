@@ -26,7 +26,7 @@ public class Deductions {
     }
 
     /**
-     * Method to load the salary into the deductions for calculations
+     * Method to load the salary into the deductions for calculations.
      * 
      * @param userID
      */

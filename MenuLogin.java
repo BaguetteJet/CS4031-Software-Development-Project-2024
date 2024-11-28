@@ -114,15 +114,6 @@ public class MenuLogin extends Menu {
                               "   promotion offers to a Full-Time employees if\n" +
                               "   possible.\n" +
                               "   \n" +
-                              "PROMOTION FUNCTIONALITY\n" +
-                              "   When promoting an employee, the scale point will\n" +
-                              "   increase by one, unless the highest scale point is\n" +
-                              "   already reached. In that case, if a further role\n" +
-                              "   is possible, the employee will be promoted to the next\n" +
-                              "   role within the job bracket. Every employee gets promoted\n" +
-                              "   once a year in October. Part-Time employees do not\n" +
-                              "   have a scale point or salary and cannot be promoted.\n" +
-                              "   \n" +
                               pageBreak);
             System.out.print("press Enter to exit");
             in.nextLine();

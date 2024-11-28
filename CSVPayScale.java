@@ -39,7 +39,7 @@ public class CSVPayScale extends CSV {
     /**
      * Method to find the salary at a scale point.
      * 
-     * @param RoleID     role ID
+     * @param RoleID role ID
      * @param ScalePoint scale point of job
      * @return string of salary, else null
      */
@@ -56,7 +56,7 @@ public class CSVPayScale extends CSV {
     }
 
     /**
-     * Method to find scale points available for a role 
+     * Method to find scale points available for a role.
      * 
      * @param roleID role ID
      * @return array of possible scale points, else null
@@ -93,7 +93,7 @@ public class CSVPayScale extends CSV {
      * Method to return the correct scale point based on start date.
      * 
      * @param roleID role ID
-     * @param date   start date
+     * @param date start date
      * @return scale point, else null
      */
     public String getCorrectScalePoint(String roleID, String date) {
@@ -137,7 +137,7 @@ public class CSVPayScale extends CSV {
     }
 
     /**
-     * Method to check if an employee can progress on scale point
+     * Method to check if an employee can progress on scale point.
      * 
      * @param roleID role ID
      * @param scalePoint scale point

@@ -25,7 +25,7 @@ public class CSVPayRoll extends CSV {
     }
 
     /** 
-     * Method to add to PayRoll
+     * Method to add to PayRoll.
      * 
      * @param userID userID
      * @param roleID roleID
@@ -51,7 +51,7 @@ public class CSVPayRoll extends CSV {
     }
     
     /**
-     * Method to update the payRoll
+     * Method to update the payRoll.
      */
     public void updatePayRoll(){
         // clears the data to prevent duplications
