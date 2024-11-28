@@ -42,7 +42,7 @@ public class UpdateSystem {
  }
 
  /**
-  * Triggers all scheduled updates based on the current date and run count.
+  * Triggers all scheduled updates based on the current date and run count assuming the program is run everyday.
   * 
   * Operations include:
   * - Clearing pay claims on the second Friday of each month.
