@@ -1,0 +1,8 @@
+This program continues from 2026-10-25
+On the start of the prorgram the user will be given login information for testing purposes
+
+Next they will be prompted with entering a date.
+Leaving this blank or entering an invalid date will lead to the program beginning on the current date.
+
+Step 1:
+The next dat
