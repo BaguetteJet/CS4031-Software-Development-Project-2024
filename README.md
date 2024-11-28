@@ -1,5 +1,19 @@
 # CS4031-Software-Development-Project-2024
 
+## Submission Details:
+- UML diagram, CRC cards, Contributions and HELP file in `/Supporting Documentation`
+- JAVADOC can be accessed in `/JAVADOC Documentation/index.html`
+- All test data files in `/data`
+- `RunSystem.java` is the main java file
+  
+Follow insturctions in `/Supporting Documentation/HELP_INSTRUCTIONS.txt` for a sample execution  
+
+## It is assumed the system runs at least ONCE a day
+The system is intended to run once a day, skipping days may result is issues and date mismatch!  
+Key dates include: every 2nd Friday of a month, every 25th of a month and every 25th of October of a year.
+  
+
+
 ## Key Ideas
 
 - build a Payroll system for UL Staff in JAVA [salary info](https://www.ul.ie/hr/current-staff/pay-benefits/salary-information)
