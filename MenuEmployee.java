@@ -70,14 +70,14 @@ public class MenuEmployee extends Menu {
                 // info of Full-Time employee
                 if (fullTime)
                     System.out.printf(
-                            "User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\nScale Point: %s\nSalary: %,d EUR\n",
-                            details[0], details[5], job[1], details[1], details[3], details[4], details[2],
+                            "User ID: %s\nName: %s\nPPSN: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\nScale Point: %s\nSalary: %,d EUR\n",
+                            details[0], details[5], details[6], job[1], details[1], details[3], details[4], details[2],
                             Integer.valueOf(job[Integer.valueOf(details[2]) + 1]));
 
                 // info of Part-Time employee
                 else
-                    System.out.printf("User ID: %s\nName: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\n",
-                            details[0], details[5], job[1], details[1], details[3], details[4]);
+                    System.out.printf("User ID: %s\nName: %s\nPPSN: %s\nRole: %s\nRole ID: %s\nType: %s\nStart Date: %s\n",
+                            details[0], details[5], details[6], job[1], details[1], details[3], details[4]);
 
                 break;
 
