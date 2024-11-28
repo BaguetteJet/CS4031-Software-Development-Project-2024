@@ -37,7 +37,6 @@ public class CSVPromotions extends CSV {
         String[] promotable = new String[2];
         // runs through all employees
         for (String[] row : employeesCSV.getData()) {
-            String payRow[] = payScaleCSV.getRowOf(row[1]);
             // check if they are Fulltime & have another role that is avaialable for them
             if (employeesCSV.isFullTime(row) && !payScaleCSV.canProgress(row[1], row[2]) && payScaleCSV.getNextRole(row[1]) != null) {
                 promotable[0] = row[0];

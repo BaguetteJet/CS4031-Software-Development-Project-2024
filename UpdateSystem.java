@@ -157,7 +157,7 @@ public class UpdateSystem {
             String[] payScaleRow = payScale.getRowOf(roleID);
             paySlip.addPaySlip(userID, payScaleRow[1], String.valueOf(taxes.getGrossMonthly()),
                     String.valueOf(taxes.getPAYE()), String.valueOf(taxes.getPRSI()), String.valueOf(taxes.getUSC()),
-                    String.valueOf(taxes.getNetPay()), today.toString());
+                    String.valueOf(taxes.getNetPay()), today.toString(), employeeRow[6]);
         }
     }
 
