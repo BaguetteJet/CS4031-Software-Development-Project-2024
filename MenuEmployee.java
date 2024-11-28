@@ -140,8 +140,8 @@ public class MenuEmployee extends Menu {
             if (x[0].equals(UserID)) {
                 try {
                     System.out.println(pageBreak);
-                    System.out.printf(" > University of Limerick <\n Name: %s\n Date: %s\n Role: %s\n", 
-                            details[5], x[7], job[1]);
+                    System.out.printf(" > University of Limerick <\n Name: %s\n Date: %s\n Role: %s\n PPSN: %s\n", 
+                            details[5], x[7], job[1], details[6]);
                     System.out.printf(
                             " Gross Pay: %,12.2f EUR\n      PAYE: %,12.2f EUR\n      PRSI: %,12.2f EUR\n       USC: %,12.2f EUR\n   Net Pay: %,12.2f EUR\n",
                             Double.parseDouble(x[2]), Double.parseDouble(x[3]), Double.parseDouble(x[4]),

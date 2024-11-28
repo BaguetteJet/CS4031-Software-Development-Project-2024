@@ -28,10 +28,11 @@ public class CSVPaySlips extends CSV {
      * @param USC      Universal Social Charge
      * @param netPay   net pay
      * @param date     date issued
+     * @param month    PPSN
      */
     public void addPaySlip(String userID, String position, String grossPay, String PAYE, String PRSI, String USC,
-            String netPay, String date) {
-        String[] newRow = { userID, position, grossPay, PAYE, PRSI, USC, netPay, date };
+            String netPay, String date, String ppsn) {
+        String[] newRow = { userID, position, grossPay, PAYE, PRSI, USC, netPay, date, ppsn };
         addRow(newRow);
     }
 }
