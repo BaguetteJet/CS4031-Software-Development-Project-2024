@@ -53,6 +53,7 @@ public class CSVEmployees extends CSV {
      * @return true if Full-Time, else false
      */
     public boolean isFullTime(String UserID) {
+        readCSV();
         return isFullTime(getRowOf(UserID));
     }
 }

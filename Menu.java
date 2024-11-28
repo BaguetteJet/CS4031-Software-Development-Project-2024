@@ -57,6 +57,5 @@ public abstract class Menu {
         payClaimsCSV = new CSVPayClaims("data\\PayClaims.csv");
         paySlipsCSV = new CSVPaySlips("data\\PaySlips.csv");
         promotionsCSV = new CSVPromotions("data\\Promotions.csv");
-        systemCheckerCSV = new CSVSystemChecker("data\\SystemChecks.csv");
     }
 }

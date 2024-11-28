@@ -50,9 +50,6 @@ public class CSVPromotions extends CSV {
 
                 //Updates the data in Employees.csv & PayRoll.csv with new scale
                 employeesCSV.updateRow(row[0], 0, row);
-
-                String newRow[] = {row[0], row[1], row[2], payRow[Integer.parseInt(row[2])]};
-                payRollCSV.updateRow(row[0], 0, newRow);
             }
         }
     }

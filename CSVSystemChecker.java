@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 /**
  * Class to operate SystemCheker.csv file data, extends CSV class.
  * todays date and the daily run counter is saved here.
@@ -7,21 +5,20 @@ import java.time.LocalDate;
  * @version 1
  */
 public class CSVSystemChecker extends CSV {
-
+    private String today; //today's date as "yyyy-MM-dd" as a string.
     /**
      * Constructor to initialize SystemCheckCSV.
      * 
      * @param pathOfCSV path of the SystemCheck.csv file.
      */
-    public CSVSystemChecker(String pathOfCSV) {
+    public CSVSystemChecker(String pathOfCSV, String date) {
         super(pathOfCSV);
+        this.today = date;
         readCSV();
     }
 
     public void updateDateAndRunCounter() {
         try {
-            String today = LocalDate.now().toString(); // Get today's date as "yyyy-MM-dd" as a string.
-
             // Gets data from csv.
             String[] currentRow = dataArray.get(1);
             // Gets the current dat saved in csv.

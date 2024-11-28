@@ -133,7 +133,7 @@ public class Deductions {
     private boolean isFullTime(String userID) {
         String[] row = employees.getRowOf(userID);
         String type = row[3];
-        if (type == "Full-Time") {
+        if (type.equals("Full-Time")) {
             return true;
         }
         return false;

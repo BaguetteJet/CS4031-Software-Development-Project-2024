@@ -127,11 +127,6 @@ public abstract class CSV {
      */
     protected void updateData(ArrayList<String[]> newData) {
         try {
-            // check if new data empty
-            if (newData.size() < 2) {
-                throw new Exception("Data is empty.");
-            }
-
             // check if columns matches previous ones (unless empty)
             if (dataArray.get(0).length != 0 && newData.get(0).length != dataArray.get(0).length) {
                 throw new Exception("Column mismatch between new and previous rows.");

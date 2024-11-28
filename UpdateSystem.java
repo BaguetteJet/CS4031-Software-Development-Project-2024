@@ -6,7 +6,8 @@ import java.util.ArrayList;
 /**
  * The UpdateSystem class manages scheduled updates
  * based on specific calendar dates and conditions.
- * These updates include payroll and payslips generation, clearing claims, and scale updates.
+ * These updates include payroll and payslips generation, clearing claims, and
+ * scale updates.
  * 
  * @author Luke Scanlon 90%
  * @author Igor Kochanski 10%
@@ -21,7 +22,7 @@ public class UpdateSystem {
     CSVEmployees employees = new CSVEmployees("data\\Employees.csv");
     CSVPayRoll payRoll = new CSVPayRoll("data\\PayRoll.csv");
     CSVPromotions promotions = new CSVPromotions("data\\Promotions.csv");
-    CSVSystemChecker systemChecker = new CSVSystemChecker("data\\SystemChecks.csv");
+    CSVSystemChecker systemChecker;
     Deductions taxes = new Deductions();
 
     // Current date
@@ -39,6 +40,7 @@ public class UpdateSystem {
         } else {
             this.today = LocalDate.parse(dateEntered);
         }
+        systemChecker = new CSVSystemChecker("data\\SystemChecks.csv", today.toString());
     }
 
     /**
@@ -56,27 +58,29 @@ public class UpdateSystem {
         int runs = systemChecker.getRunCounter();
 
         if (checkSecondFriday() && runs <= 1) {
-            for (String[] employee : employees.getData()) {
-                String userID = employee[0];
+            for (int i = 1; i < employees.getData().size(); i++) {
+                String[] row = employees.getData().get(i);
+                String userID = row[0];
                 addEmployeeToSystem(userID);
             }
             payClaim.clearData();
         }
 
         if (checkTwentyFifth() && runs <= 1) {
-            ArrayList<String[]> employeesData = employees.getData();
-
-            for (String[] employee : employeesData) {
-                String userID = employee[0];
+            for (int i = 1; i < employees.getData().size(); i++) {
+                String[] row = employees.getData().get(i);
+                String userID = row[0];
                 if (isUserInPayRoll(userID)) {
                     addEmployeeToPaySlip(userID);
                 }
             }
+            if (today.getMonth() == Month.OCTOBER) {
+                promotions.findPromotionsAndUpdateScale();
+            }
+            payRoll.clearData();
         }
 
-        if (checkFirstOctober() && runs <= 1) {
-            promotions.findPromotionsAndUpdateScale();
-        }
+        
     }
 
     /**
