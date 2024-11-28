@@ -77,7 +77,7 @@ public class Deductions {
      * @return Amount of PRSI.
      */
     public double getPRSI() {
-        double monthlyEarnings = salary / 52;
+        double monthlyEarnings = (salary * 12) / 52;
         int creditPRSI = 12;
         if (monthlyEarnings < 352) {
             return 0;
@@ -99,7 +99,7 @@ public class Deductions {
      * @return Amount of USC.
      */
     public double getUSC() {
-        if (salary <= 13000) {
+        if (salary <= 13000 / 12) {
             return 0;
         } else {
             return (salary * 0.04) /12;

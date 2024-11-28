@@ -32,7 +32,7 @@ public class CSVPaySlips extends CSV {
      */
     public void addPaySlip(String userID, String position, String grossPay, String PAYE, String PRSI, String USC,
             String netPay, String date, String ppsn) {
-        String[] newRow = { userID, position, String.format("%.2f", grossPay), String.format("%.2f", PAYE), String.format("%.2f", PRSI), String.format("%.2f", USC), String.format("%.2f", netPay), date, ppsn};
+        String[] newRow = { userID, position, String.format("%.2f", Double.parseDouble(grossPay)), String.format("%.2f",  Double.parseDouble(PAYE)), String.format("%.2f",  Double.parseDouble(PRSI)), String.format("%.2f",  Double.parseDouble(USC)), String.format("%.2f",  Double.parseDouble(netPay)), date, ppsn};
         addRow(newRow);
     }
 }

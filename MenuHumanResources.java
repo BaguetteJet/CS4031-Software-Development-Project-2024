@@ -77,7 +77,7 @@ public class MenuHumanResources extends Menu {
         promotionsCSV.printData();
 
         // choose employee
-        System.out.println("Choose employee to promote.\n-> ");
+        System.out.print("Choose employee to promote.\n-> ");
         String userToPromote = in.nextLine().toUpperCase();
         String row[] = promotionsCSV.getRowOf(userToPromote);
 

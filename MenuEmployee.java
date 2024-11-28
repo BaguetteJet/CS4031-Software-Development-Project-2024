@@ -66,6 +66,7 @@ public class MenuEmployee extends Menu {
             case "V": // view details
                 // details of user
                 details = employeesCSV.getRowOf(UserID);
+                job = payScaleCSV.getRowOf(details[1]);
 
                 // info of Full-Time employee
                 if (fullTime)

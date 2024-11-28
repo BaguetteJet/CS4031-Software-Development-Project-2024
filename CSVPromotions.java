@@ -58,7 +58,6 @@ public class CSVPromotions extends CSV {
      */
     public void promoteEmployee(String userID){
         String row[] = employeesCSV.getRowOf(userID),
-               payRow[] = payScaleCSV.getRowOf(row[1]),
                empty[] = new String[]{"", ""}; 
 
         // checks if there is a further role that they can pursue
