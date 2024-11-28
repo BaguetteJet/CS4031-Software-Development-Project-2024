@@ -1,8 +1,63 @@
 This program continues from 2026-10-25
-On the start of the prorgram the user will be given login information for testing purposes
+At the program's start, the user will be given login information for testing purposes.
 
-Next they will be prompted with entering a date.
+Next, they will be prompted to enter a date.
 Leaving this blank or entering an invalid date will lead to the program beginning on the current date.
 
 Step 1:
-The next dat
+The next date in the sequence is 2026-11-13 (2nd Friday of November)
+Payroll is Cleared and regenerated
+Between 2026-10-25 & 2026-11-13, a Part-Time Employee can log in and fill their pay claims.
+For Example;
+USERID, USERNAME, PASSWORD
+E6509635,FilipRo2,gumgum3
+
+Upon logging in as this user, you will see an optional prompt: "F)ill Pay Claim."
+The user can then fill in their hours, and the option disappears afterwards.
+The option doesn't become available again until the 2026-11-25.
+
+Step 2:
+The next date in the sequence is 2026-11-25 (25th of the month)
+On each 25th, the Payslips are distributed to all Full-Time employees and Part-Time employees who filled out a PayClaim.
+PayClaims is also emptied.
+
+Step 3:
+The next date in the sequence is 2026-12-11
+Payroll regenerated again.
+
+Step 4:
+The next date in the sequence is 2027-10-25 (Promotion day)
+PaySlips are generated.
+PayScale is then increased, and Promotions are found for Full-Time Employees.
+
+
+SYSTEM USER TYPES:
+The system has 3 user types,
+
+ADMIN
+EMPLOYEE
+HUMAN RESOURCES [HR]
+
+Each user type can see and do different things. A "user" in this system is just an account, meaning not every user is an employee! Only EMPLOYEE type users are Full-Time or Part-Time employees, meanwhile ADMIN and HR type users are just accounts (not employees!).
+Individual Admin and HR employees can also have their own EMPLOYEE type account to use the Payroll system.
+
+SELECTION SYSTEM:
+Different input types,
+
+Prompts with ":" indicate an open field.
+Prompts with "->" indicate a selection.
+Open field inputs can be of variable length, are capslock sensitive, and may require a certain format (number, text, date, etc.), while a selection is capslock insensitive and is a single character.
+
+HOW TO USE
+
+After logging in, each user type has a different menu. Read SELECTION SYSTEM on how to navigate menus.
+
+ADMIN users can create new users of each type and view existing usernames and passwords. When creating a new EMPLOYEE user, extra input data is required.
+
+EMPLOYEE users can view their personal information and past pay slips. Full-Time employees can accept promotions, while Part-Time employees can fill in pay claims.
+
+HUMAN RESOURCES users can view the personal information of every EMPLOYEE and have the ability to send promotion offers to Full-Time employees if possible.
+
+
+
+
