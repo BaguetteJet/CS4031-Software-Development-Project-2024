@@ -4,9 +4,9 @@ import java.time.Month;
 import java.util.ArrayList;
 
 /**
- * The UpdateSystem class manages and triggers scheduled updates
+ * The UpdateSystem class manages scheduled updates
  * based on specific calendar dates and conditions.
- * These updates include payroll generation, clearing claims, and scale updates.
+ * These updates include payroll and payslips generation, clearing claims, and scale updates.
  * 
  * @author Luke Scanlon 90%
  * @author Igor Kochanski 10%
