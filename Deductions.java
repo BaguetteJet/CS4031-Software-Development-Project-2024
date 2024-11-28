@@ -2,7 +2,7 @@
  *.Deductions class to calulate all deductions from an employees salary.
 
  @author Luke Scanlon 100%
- @version 4.
+ @version 4
  */
 public class Deductions {
     private CSVEmployees employees;
