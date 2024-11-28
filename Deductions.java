@@ -14,9 +14,9 @@ public class Deductions {
     /**
      * Constructor.
      * calls an instance of:
-     * CSVEmployees.
-     * CSVPayScale.
-     * CSVPayClaims.
+     * CSVEmployees,
+     * CSVPayScale,
+     * CSVPayClaims,
      */
     public Deductions() {
         employees = new CSVEmployees("data\\Employees.csv");
@@ -49,7 +49,7 @@ public class Deductions {
     /**
      * Method to get the monthly salary.
      * 
-     * @return salary.
+     * @return salary
      */
     public double getGrossMonthly() {
         return salary;
@@ -58,7 +58,7 @@ public class Deductions {
     /**
      * Method to calculate PAYE(Pay As You Earn) deduction.
      * 
-     * @return Amount of PAYE.
+     * @return Amount of PAYE
      */
     public double getPAYE() {
         double MonthlyEarnings = getGrossMonthly();
@@ -74,10 +74,10 @@ public class Deductions {
     /**
      * Method to calculate PRSI(Pay Related Social Insurance) deduction.
      * 
-     * @return Amount of PRSI.
+     * @return Amount of PRSI
      */
     public double getPRSI() {
-        double monthlyEarnings = (salary * 12) / 52;
+        double monthlyEarnings = salary;
         int creditPRSI = 12;
         if (monthlyEarnings < 352) {
             return 0;
@@ -96,20 +96,20 @@ public class Deductions {
     /**
      * Method to calculate USC(Universal Social Charge) deduction.
      * 
-     * @return Amount of USC.
+     * @return Amount of USC
      */
     public double getUSC() {
         if (salary <= 13000 / 12) {
             return 0;
         } else {
-            return (salary * 0.04) /12;
+            return (salary * 0.04);
         }
     }
     
     /**
      * Method to calculate the total deductions.
      * 
-     * @return Amount of PAYE.
+     * @return Amount of PAYE
      */
     private double getTotalDeductions() {
         return getPAYE() + getPRSI() + getUSC();
@@ -118,7 +118,7 @@ public class Deductions {
     /**
      * Method to calculate the Net pay.
      * 
-     * @return NetPay.
+     * @return NetPay
      */
     public double getNetPay() {
         return getGrossMonthly() - getTotalDeductions();
@@ -142,10 +142,11 @@ public class Deductions {
     /**
      * Method to get the hours worked from the PayClaims.csv file.
      * @param userID
-     * @return Hours worked.
+     * @return Hours worked
      */
     private double hoursWorked(String userID) {
         String[] row = payClaims.getRowOf(userID);
         return Double.parseDouble(row[1]);
     }
+    
 }
