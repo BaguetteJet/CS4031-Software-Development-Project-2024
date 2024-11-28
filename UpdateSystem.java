@@ -1,7 +1,6 @@
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 
 /**
  * The UpdateSystem class manages scheduled updates
@@ -58,12 +57,12 @@ public class UpdateSystem {
         int runs = systemChecker.getRunCounter();
 
         if (checkSecondFriday() && runs <= 1) {
+            payRoll.clearData();
             for (int i = 1; i < employees.getData().size(); i++) {
                 String[] row = employees.getData().get(i);
                 String userID = row[0];
                 addEmployeeToSystem(userID);
             }
-            payClaim.clearData();
         }
 
         if (checkTwentyFifth() && runs <= 1) {
@@ -77,7 +76,7 @@ public class UpdateSystem {
             if (today.getMonth() == Month.OCTOBER) {
                 promotions.findPromotionsAndUpdateScale();
             }
-            payRoll.clearData();
+            payClaim.clearData();
         }
 
         
@@ -107,15 +106,6 @@ public class UpdateSystem {
         }
         LocalDate secondFriday = firstFriday.plusDays(7);
         return today.equals(secondFriday);
-    }
-
-    /**
-     * Checks if the current date is October 1st.
-     * 
-     * @return true if today is October 1st, false otherwise.
-     */
-    private boolean checkFirstOctober() {
-        return today.getMonth() == Month.OCTOBER && today.getDayOfMonth() == 1;
     }
 
     /**
@@ -157,7 +147,7 @@ public class UpdateSystem {
             String[] payScaleRow = payScale.getRowOf(roleID);
             paySlip.addPaySlip(userID, payScaleRow[1], String.valueOf(taxes.getGrossMonthly()),
                     String.valueOf(taxes.getPAYE()), String.valueOf(taxes.getPRSI()), String.valueOf(taxes.getUSC()),
-                    String.valueOf(taxes.getNetPay()), today.toString());
+                    String.valueOf(taxes.getNetPay()), today.toString(), employeeRow[6]);
         }
     }
 

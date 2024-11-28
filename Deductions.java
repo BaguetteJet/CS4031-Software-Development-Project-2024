@@ -148,5 +148,4 @@ public class Deductions {
         String[] row = payClaims.getRowOf(userID);
         return Double.parseDouble(row[1]);
     }
-    
 }
