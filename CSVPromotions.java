@@ -10,7 +10,6 @@ public class CSVPromotions extends CSV {
     //Reads from Employees.csv, PayScale.csv & PayRoll.csv
     private final CSVEmployees employeesCSV;
     private final CSVPayScale payScaleCSV;
-    private final CSVPayRoll payRollCSV;
 
     /**
      * Constructor.
@@ -23,7 +22,6 @@ public class CSVPromotions extends CSV {
 
         employeesCSV = new CSVEmployees("data\\Employees.csv");
         payScaleCSV = new CSVPayScale("data\\PayScale.csv");
-        payRollCSV = new CSVPayRoll("data\\PayRoll.csv");
     }
 
     /**
@@ -73,9 +71,6 @@ public class CSVPromotions extends CSV {
 
             //Updates the data in Employees.csv & PayRoll.csv with new role
             employeesCSV.updateRow(userID, 0, row);
-
-            String newRow[] = {userID, row[1], row[2], payRow[Integer.parseInt(row[2])]};
-            payRollCSV.updateRow(userID, 0, newRow);
             return;
         }
 
