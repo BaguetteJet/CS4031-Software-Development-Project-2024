@@ -2,11 +2,11 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 
+
 /**
  * The UpdateSystem class manages scheduled updates
  * based on specific calendar dates and conditions.
- * These updates include payroll and payslips generation, clearing claims, and
- * scale updates.
+ * These updates include payroll and payslips generation, clearing claims, and scale updates.
  * 
  * @author Luke Scanlon 90%
  * @author Igor Kochanski 10%
@@ -47,9 +47,10 @@ public class UpdateSystem {
      * assuming the program is run everyday.
      * 
      * Operations include:
-     * - Clearing pay claims on the second Friday of each month.
+     * -Clears payroll and generates new payroll on the second Friday of every month.
+     * - Clearing pay claims on the 25th of each month.
      * - Generating payslips on the 25th of each month.
-     * - Promoting employees on October 1st.
+     * - Promoting employees on October 25th and increase pay scale point by one.
      */
     public void updateAll() {
         systemChecker.updateDateAndRunCounter();
@@ -78,8 +79,6 @@ public class UpdateSystem {
             }
             payClaim.clearData();
         }
-
-        
     }
 
     /**
