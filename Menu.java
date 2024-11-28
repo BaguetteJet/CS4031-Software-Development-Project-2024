@@ -27,8 +27,6 @@ public abstract class Menu {
     protected CSVPaySlips paySlipsCSV;
     protected CSVPromotions promotionsCSV;
     protected CSVSystemChecker systemCheckerCSV; 
-    
-    protected CSVPayRoll payRollCSV;
 
     /**
      * Constructor.
@@ -60,7 +58,5 @@ public abstract class Menu {
         paySlipsCSV = new CSVPaySlips("data\\PaySlips.csv");
         promotionsCSV = new CSVPromotions("data\\Promotions.csv");
         systemCheckerCSV = new CSVSystemChecker("data\\SystemChecks.csv");
-
-        payRollCSV = new CSVPayRoll("data\\PayRoll.csv");
     }
 }

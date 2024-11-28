@@ -55,12 +55,6 @@ public class MenuHumanResources extends Menu {
                 promotePrompt();
                 break;
 
-            case "T": // generate possible promotions <--- [FOR TESTING PURPOSES]
-                System.out.println("LISTING PROMOTIONS....");
-                payRollCSV.updatePayRoll();
-                promotionsCSV.findPromotionsAndUpdateScale();
-                break;
-
             case "Q": // quit back to main system menu
                 System.out.printf("%s\n   Logged Out\n%s\n", pageBreak, pageBreak);
                 more = false;
