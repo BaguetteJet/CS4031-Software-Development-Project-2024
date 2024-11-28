@@ -7,7 +7,7 @@
  */
 public class CSVPromotions extends CSV {
 
-    //Reads from Employees.csv, PayScale.csv & PayRoll.csv
+    //Reads from Employees.csv, PayScale.csv 
     private final CSVEmployees employeesCSV;
     private final CSVPayScale payScaleCSV;
 
@@ -45,7 +45,7 @@ public class CSVPromotions extends CSV {
             } else if (employeesCSV.isFullTime(row) && payScaleCSV.canProgress(row[1], row[2])) {
                 row[2] = Integer.toString(Integer.parseInt(row[2]) + 1);
 
-                //Updates the data in Employees.csv & PayRoll.csv with new scale
+                //Updates the data in Employees.csv with new scale
                 employeesCSV.updateRow(row[0], 0, row);
             }
         }
@@ -58,7 +58,6 @@ public class CSVPromotions extends CSV {
      */
     public void promoteEmployee(String userID){
         String row[] = employeesCSV.getRowOf(userID),
-               payRow[] = payScaleCSV.getRowOf(row[1]),
                empty[] = new String[]{"", ""}; 
 
         // checks if there is a further role that they can pursue
@@ -66,10 +65,9 @@ public class CSVPromotions extends CSV {
             row[1] = payScaleCSV.getNextRole(row[1]);
             row[2] = payScaleCSV.findAvailableScalePoints(row[1])[0];
 
-  
             updateRow(userID, 0, empty);
 
-            //Updates the data in Employees.csv & PayRoll.csv with new role
+            //Updates the data in Employees.csv with new role
             employeesCSV.updateRow(userID, 0, row);
             return;
         }
