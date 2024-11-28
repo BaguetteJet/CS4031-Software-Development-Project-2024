@@ -1,3 +1,4 @@
+
 /**
  * Class to operate PayScale.csv file data, extends CSV class.
  * All pay slips are saved here.

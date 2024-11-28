@@ -1,3 +1,4 @@
+
 /**
  * Class to operate SystemCheker.csv file data, extends CSV class.
  * todays date and the daily run counter is saved here.

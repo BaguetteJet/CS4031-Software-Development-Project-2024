@@ -1,3 +1,4 @@
+
 /**
  * Class to operate Promotions.csv file data, extends CSV class.
  * All promotions are saved here.
