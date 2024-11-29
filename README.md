@@ -12,7 +12,10 @@ Follow insturctions in `/Supporting Documentation/HELP_INSTRUCTIONS.txt` for a s
 The system is intended to run once a day, skipping days may result is issues and date mismatch!  
 Key dates include: every 2nd Friday of a month, every 25th of a month and every 25th of October of a year.
   
-
+## Group 4 Members:
+Igor Kochanski - 23358459  
+Ciaran Whelan - 23370211  
+Luke Scanlon - 23390573  
 
 ## Key Ideas
 
